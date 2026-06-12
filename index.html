@@ -1,35 +1,30 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>NaVi Global | AI-Powered Business Platform</title>
+<title>NaVi Global</title>
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-scroll-behavior:smooth;
+font-family:Segoe UI,sans-serif;
 }
 
 body{
 background:#081120;
 color:white;
-overflow-x:hidden;
 }
 
 nav{
+background:#0d1b2a;
+padding:20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 8%;
-background:#0d1b2a;
-position:sticky;
-top:0;
-z-index:1000;
 }
 
 .logo{
@@ -38,388 +33,286 @@ font-weight:bold;
 color:#38bdf8;
 }
 
-nav ul{
-display:flex;
-list-style:none;
-gap:25px;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-transition:.3s;
-}
-
-nav a:hover{
-color:#38bdf8;
-}
-
-.hero{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-background:linear-gradient(135deg,#081120,#0ea5e9);
-}
-
-.hero h1{
-font-size:70px;
-margin-bottom:20px;
-}
-
-.hero p{
-font-size:22px;
-max-width:800px;
-margin:auto;
-margin-bottom:30px;
-line-height:1.7;
-}
-
-.btn{
-background:#0ea5e9;
-padding:15px 35px;
-border:none;
-border-radius:30px;
-font-size:18px;
-color:white;
-cursor:pointer;
-}
-
-.section{
-padding:90px 8%;
-}
-
-.title{
-text-align:center;
-font-size:42px;
-margin-bottom:50px;
-color:#38bdf8;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
+.container{
+width:90%;
+max-width:500px;
+margin:50px auto;
 }
 
 .card{
 background:#112240;
 padding:30px;
 border-radius:20px;
-transition:.3s;
+box-shadow:0 0 20px rgba(0,0,0,.3);
 }
 
-.card:hover{
-transform:translateY(-8px);
+h2{
+text-align:center;
+margin-bottom:20px;
+color:#38bdf8;
 }
 
-.card h3{
+input,select{
+width:100%;
+padding:14px;
 margin-bottom:15px;
-color:#38bdf8;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-}
-
-.stat{
-background:#112240;
-padding:30px;
-text-align:center;
-border-radius:20px;
-}
-
-.stat h2{
-font-size:40px;
-color:#38bdf8;
-}
-
-.about{
-max-width:900px;
-margin:auto;
-text-align:center;
-font-size:18px;
-line-height:1.8;
-}
-
-form{
-max-width:700px;
-margin:auto;
-display:flex;
-flex-direction:column;
-gap:15px;
-}
-
-input,textarea{
-padding:15px;
 border:none;
 border-radius:10px;
 font-size:16px;
 }
 
-footer{
-background:#0d1b2a;
-padding:25px;
-text-align:center;
+button{
+width:100%;
+padding:15px;
+background:#0ea5e9;
+border:none;
+border-radius:10px;
+color:white;
+font-size:16px;
+cursor:pointer;
 }
 
-@media(max-width:768px){
+button:hover{
+opacity:.9;
+}
+
+.link{
+text-align:center;
+margin-top:15px;
+}
+
+.link a{
+color:#38bdf8;
+cursor:pointer;
+text-decoration:none;
+}
+
+.dashboard{
+display:none;
+}
+
+.info{
+background:#1b3358;
+padding:15px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.logout{
+background:#ef4444;
+margin-top:15px;
+}
+
+.hero{
+text-align:center;
+padding:60px 20px;
+}
 
 .hero h1{
-font-size:42px;
+font-size:45px;
+margin-bottom:10px;
 }
 
 .hero p{
 font-size:18px;
-}
-
-nav{
-flex-direction:column;
-gap:15px;
-}
-
-nav ul{
-flex-wrap:wrap;
-justify-content:center;
-}
+color:#cbd5e1;
 }
 </style>
 </head>
-
 <body>
 
 <nav>
 <div class="logo">NaVi Global</div>
-
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#features">Features</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
 </nav>
 
-<section class="hero" id="home">
-
-<div>
-<h1>NaVi Global</h1>
-
-<p>
-Empowering businesses worldwide with AI-powered automation,
-smart customer support, and global connectivity.
-</p>
-
-<a href="#contact">
-<button class="btn">Get Started</button>
-</a>
+<div class="hero">
+<h1>Welcome to NaVi Global</h1>
+<p>AI Powered Global Business Platform</p>
 </div>
 
-</section>
+<div class="container">
 
-<section class="section">
+<!-- REGISTER -->
+<div class="card" id="registerBox">
 
-<h2 class="title">Our Statistics</h2>
+<h2>Create Account</h2>
 
-<div class="stats">
+<input type="text" id="regName" placeholder="Full Name">
 
-<div class="stat">
-<h2>10K+</h2>
-<p>Users</p>
-</div>
+<input type="number" id="regAge" placeholder="Age">
 
-<div class="stat">
-<h2>150+</h2>
-<p>Countries</p>
-</div>
+<input type="tel" id="regMobile" placeholder="Mobile Number">
 
-<div class="stat">
-<h2>99.9%</h2>
-<p>Uptime</p>
-</div>
+<select id="regCountry">
+<option value="">Select Country</option>
+<option>India</option>
+<option>USA</option>
+<option>UK</option>
+<option>Canada</option>
+<option>Australia</option>
+<option>Germany</option>
+<option>Japan</option>
+</select>
 
-<div class="stat">
-<h2>24/7</h2>
-<p>Support</p>
+<button onclick="registerUser()">Register</button>
+
+<div class="link">
+Already have an account?
+<a onclick="showLogin()">Login</a>
 </div>
 
 </div>
 
-</section>
+<!-- LOGIN -->
+<div class="card" id="loginBox" style="display:none">
 
-<section class="section" id="features">
+<h2>Login</h2>
 
-<h2 class="title">Features</h2>
+<input type="tel" id="loginMobile" placeholder="Enter Mobile Number">
 
-<div class="grid">
+<button onclick="loginUser()">Login</button>
 
-<div class="card">
-<h3>AI Assistant</h3>
-<p>Smart chatbot support powered by AI.</p>
-</div>
-
-<div class="card">
-<h3>Analytics Dashboard</h3>
-<p>Monitor business growth with real-time insights.</p>
-</div>
-
-<div class="card">
-<h3>Global Reach</h3>
-<p>Expand and connect worldwide.</p>
-</div>
-
-<div class="card">
-<h3>Enterprise Security</h3>
-<p>Reliable and secure infrastructure.</p>
+<div class="link">
+Don't have an account?
+<a onclick="showRegister()">Register</a>
 </div>
 
 </div>
 
-</section>
+<!-- DASHBOARD -->
+<div class="card dashboard" id="dashboard">
 
-<section class="section" id="about">
+<h2>User Dashboard</h2>
 
-<h2 class="title">About NaVi Global</h2>
-
-<div class="about">
-
-<p>
-NaVi Global is a modern AI-powered business platform designed to
-help organizations automate support, improve customer engagement,
-and scale globally using intelligent technology solutions.
-</p>
-
+<div class="info">
+<b>Name:</b>
+<span id="dashName"></span>
 </div>
 
-</section>
-
-<section class="section" id="services">
-
-<h2 class="title">Services</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>AI Customer Support</h3>
-<p>24/7 chatbot support for customers.</p>
+<div class="info">
+<b>Age:</b>
+<span id="dashAge"></span>
 </div>
 
-<div class="card">
-<h3>Business Automation</h3>
-<p>Automate workflows and operations.</p>
+<div class="info">
+<b>Mobile:</b>
+<span id="dashMobile"></span>
 </div>
 
-<div class="card">
-<h3>Global Solutions</h3>
-<p>Expand internationally with confidence.</p>
+<div class="info">
+<b>Country:</b>
+<span id="dashCountry"></span>
 </div>
 
-<div class="card">
-<h3>Cloud Platform</h3>
-<p>Access your business anywhere.</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2 class="title">Testimonials</h2>
-
-<div class="grid">
-
-<div class="card">
-<p>
-"NaVi Global transformed our customer support."
-</p>
-<br>
-<h4>John Smith</h4>
-</div>
-
-<div class="card">
-<p>
-"The AI assistant saved us countless hours."
-</p>
-<br>
-<h4>Sarah Lee</h4>
-</div>
-
-<div class="card">
-<p>
-"Excellent business automation platform."
-</p>
-<br>
-<h4>David Brown</h4>
-</div>
-
-</div>
-
-</section>
-
-<section class="section" id="contact">
-
-<h2 class="title">Contact Us</h2>
-
-<form>
-
-<input type="text" placeholder="Your Name" required>
-
-<input type="email" placeholder="Your Email" required>
-
-<textarea rows="6" placeholder="Your Message"></textarea>
-
-<button type="submit" class="btn">
-Send Message
+<button class="logout" onclick="logoutUser()">
+Logout
 </button>
 
-</form>
+</div>
 
-</section>
+</div>
 
-<footer>
-<p>© 2026 NaVi Global. All Rights Reserved.</p>
-</footer>
-
-<!-- Chatbase Integration -->
 <script>
-(function(){
-if(!window.chatbase||window.chatbase("getState")!=="initialized"){
-window.chatbase=(...arguments)=>{
-if(!window.chatbase.q){
-window.chatbase.q=[]
-}
-window.chatbase.q.push(arguments)
-};
-window.chatbase=new Proxy(window.chatbase,{
-get(target,prop){
-if(prop==="q"){
-return target.q
-}
-return(...args)=>target(prop,...args)
-}
-});
+
+function showLogin(){
+document.getElementById("registerBox").style.display="none";
+document.getElementById("loginBox").style.display="block";
 }
 
-const onLoad=function(){
-const script=document.createElement("script");
-script.src="https://www.chatbase.co/embed.min.js";
-script.id="A0IVg-dTMMASuqCxupRtI";
-script.domain="www.chatbase.co";
-document.body.appendChild(script);
+function showRegister(){
+document.getElementById("loginBox").style.display="none";
+document.getElementById("registerBox").style.display="block";
+}
+
+function registerUser(){
+
+let name=document.getElementById("regName").value;
+let age=document.getElementById("regAge").value;
+let mobile=document.getElementById("regMobile").value;
+let country=document.getElementById("regCountry").value;
+
+if(!name || !age || !mobile || !country){
+alert("Please fill all fields");
+return;
+}
+
+const user={
+name:name,
+age:age,
+mobile:mobile,
+country:country
 };
 
-if(document.readyState==="complete"){
-onLoad();
-}else{
-window.addEventListener("load",onLoad);
+localStorage.setItem(
+"user_"+mobile,
+JSON.stringify(user)
+);
+
+alert("Registration Successful");
+
+showLogin();
 }
-})();
+
+function loginUser(){
+
+let mobile=document.getElementById("loginMobile").value;
+
+let user=localStorage.getItem("user_"+mobile);
+
+if(!user){
+alert("User Not Found");
+return;
+}
+
+user=JSON.parse(user);
+
+document.getElementById("dashName").innerText=user.name;
+document.getElementById("dashAge").innerText=user.age;
+document.getElementById("dashMobile").innerText=user.mobile;
+document.getElementById("dashCountry").innerText=user.country;
+
+document.getElementById("loginBox").style.display="none";
+document.getElementById("registerBox").style.display="none";
+document.getElementById("dashboard").style.display="block";
+
+localStorage.setItem("loggedInUser",mobile);
+}
+
+function logoutUser(){
+
+localStorage.removeItem("loggedInUser");
+
+document.getElementById("dashboard").style.display="none";
+document.getElementById("loginBox").style.display="block";
+}
+
+window.onload=function(){
+
+let mobile=localStorage.getItem("loggedInUser");
+
+if(mobile){
+
+let user=localStorage.getItem("user_"+mobile);
+
+if(user){
+
+user=JSON.parse(user);
+
+document.getElementById("dashName").innerText=user.name;
+document.getElementById("dashAge").innerText=user.age;
+document.getElementById("dashMobile").innerText=user.mobile;
+document.getElementById("dashCountry").innerText=user.country;
+
+document.getElementById("registerBox").style.display="none";
+document.getElementById("loginBox").style.display="none";
+document.getElementById("dashboard").style.display="block";
+}
+}
+}
+
 </script>
 
 </body>
 </html>
+```
+
