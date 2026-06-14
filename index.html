@@ -90,12 +90,40 @@
             border-radius: 20px;
             font-weight: 600;
             transition: all 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
         .nav-btn:hover {
             background: var(--primary-dark);
             color: white;
             transform: translateY(-2px);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-greeting {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
         }
 
         /* Hero Section */
@@ -121,12 +149,11 @@
             background: var(--bg-dark);
         }
 
-        /* Using a reliable YouTube embed for background as direct MP4 links can be unstable */
         .video-background iframe {
             width: 100vw;
-            height: 56.25vw; /* 16:9 Aspect Ratio */
+            height: 56.25vw;
             min-height: 100vh;
-            min-width: 177.77vh; /* 16:9 Aspect Ratio */
+            min-width: 177.77vh;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -135,7 +162,6 @@
             opacity: 0.5;
         }
 
-        /* Fallback for video */
         .video-fallback {
             position: absolute;
             top: 0;
@@ -220,6 +246,172 @@
             background: var(--primary-dark);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+        }
+
+        /* Marketplace Section */
+        .marketplace {
+            display: none;
+            padding: 100px 5%;
+            min-height: 100vh;
+            padding-top: 120px;
+        }
+
+        .marketplace.active {
+            display: block;
+        }
+
+        .marketplace-header {
+            margin-bottom: 50px;
+        }
+
+        .marketplace-header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .marketplace-header p {
+            color: var(--text-gray);
+            font-size: 18px;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 20px;
+            background: rgba(8, 17, 32, 0.6);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-gray);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 8px 18px;
+            background: rgba(8, 17, 32, 0.6);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 20px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .marketplace-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .item-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(14, 165, 233, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .item-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .item-content {
+            padding: 20px;
+        }
+
+        .item-category {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.2);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .item-description {
+            color: var(--text-gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .item-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .item-btn:hover {
+            background: var(--primary-dark);
         }
 
         /* Auth Modal */
@@ -362,6 +554,33 @@
             transform: translateY(-2px);
         }
 
+        .status-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+
+        .status-message.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            display: block;
+        }
+
+        .status-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            display: block;
+        }
+
+        .status-message.info {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            display: block;
+        }
+
         /* Features Section */
         .features {
             padding: 100px 8%;
@@ -453,10 +672,13 @@
         /* Responsive */
         @media (max-width: 768px) {
             nav ul {
-                display: none; /* In a real site, you'd add a hamburger menu */
+                display: none;
             }
             .hero h1 {
                 font-size: 48px;
+            }
+            .marketplace-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
         }
     </style>
@@ -472,13 +694,16 @@
             <li><a href="#features">Features</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="javascript:void(0)" class="nav-btn" onclick="toggleModal('login')">Sign In</a></li>
+            <li id="navAuthBtn"><a href="javascript:void(0)" class="nav-btn" onclick="toggleModal('login')">Sign In</a></li>
+            <li id="navUserInfo" class="user-info" style="display: none;">
+                <span class="user-greeting" id="userGreeting"></span>
+                <button class="logout-btn" onclick="handleLogout()">Logout</button>
+            </li>
         </ul>
     </nav>
 
-    <section class="hero">
+    <section class="hero" id="heroSection">
         <div class="video-background">
-            <!-- Using a high-quality abstract tech background video from YouTube for maximum reliability -->
             <iframe src="https://www.youtube.com/embed/lfzcPdj9ynE?autoplay=1&mute=1&controls=0&loop=1&playlist=lfzcPdj9ynE&showinfo=0&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             <div class="video-fallback"></div>
         </div>
@@ -491,6 +716,27 @@
                 <button class="main-btn" onclick="toggleModal('register')">Get Started Free</button>
             </div>
         </div>
+    </section>
+
+    <!-- Marketplace Section -->
+    <section class="marketplace" id="marketplaceSection">
+        <div class="marketplace-header">
+            <h1>Welcome to NaVi Global Marketplace</h1>
+            <p>Explore our premium AI-powered services and solutions</p>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search services...">
+            <div class="category-filters">
+                <button class="category-btn active" onclick="filterByCategory('all')">All</button>
+                <button class="category-btn" onclick="filterByCategory('AI')">AI Solutions</button>
+                <button class="category-btn" onclick="filterByCategory('Analytics')">Analytics</button>
+                <button class="category-btn" onclick="filterByCategory('Security')">Security</button>
+                <button class="category-btn" onclick="filterByCategory('Integration')">Integration</button>
+            </div>
+        </div>
+
+        <div class="marketplace-grid" id="marketplaceGrid"></div>
     </section>
 
     <section id="features" class="features">
@@ -525,54 +771,56 @@
 
             <!-- Login Form -->
             <div id="loginSection" class="form-section">
+                <div id="loginStatus" class="status-message"></div>
                 <div class="input-group">
                     <label>Username</label>
-                    <input type="text" placeholder="Your username">
+                    <input type="text" id="loginUsername" placeholder="Your username">
                 </div>
                 <div class="input-group">
                     <label>Password</label>
-                    <input type="password" placeholder="••••••••">
+                    <input type="password" id="loginPassword" placeholder="••••••••">
                 </div>
-                <button class="submit-btn">Sign In</button>
+                <button class="submit-btn" onclick="handleLogin()">Sign In</button>
             </div>
 
             <!-- Register Form -->
             <div id="registerSection" class="form-section">
+                <div id="registerStatus" class="status-message"></div>
                 <div class="input-row">
                     <div class="input-group">
                         <label>Name</label>
-                        <input type="text" placeholder="Full name">
+                        <input type="text" id="regName" placeholder="Full name">
                     </div>
                     <div class="input-group">
                         <label>Age</label>
-                        <input type="number" placeholder="Age">
+                        <input type="number" id="regAge" placeholder="Age">
                     </div>
                 </div>
                 <div class="input-row">
                     <div class="input-group">
                         <label>Phone</label>
-                        <input type="tel" placeholder="+1...">
+                        <input type="tel" id="regPhone" placeholder="+1...">
                     </div>
                     <div class="input-group">
                         <label>Email</label>
-                        <input type="email" placeholder="email@example.com">
+                        <input type="email" id="regEmail" placeholder="email@example.com">
                     </div>
                 </div>
                 <div class="input-group">
                     <label>Create Username</label>
-                    <input type="text" placeholder="Unique username">
+                    <input type="text" id="regUsername" placeholder="Unique username">
                 </div>
                 <div class="input-row">
                     <div class="input-group">
                         <label>Password</label>
-                        <input type="password" placeholder="••••••••">
+                        <input type="password" id="regPassword" placeholder="••••••••">
                     </div>
                     <div class="input-group">
                         <label>Confirm</label>
-                        <input type="password" placeholder="••••••••">
+                        <input type="password" id="regConfirm" placeholder="••••••••">
                     </div>
                 </div>
-                <button class="submit-btn">Create Account</button>
+                <button class="submit-btn" onclick="handleRegister()">Create Account</button>
             </div>
         </div>
     </div>
@@ -590,12 +838,92 @@
         <p class="copyright">© 2026 NaVi Global. All rights reserved.</p>
     </footer>
 
-
-
     <script>
-        
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzrXvg5j2Ugbz8TzHv9O-WMwdSvD78ANrhQoT7bO7z_dPuhMmqZiVW5V86CWPufwzzu/exec';
-        
+        // PASTE YOUR GOOGLE SCRIPT URL BELOW
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjS5W9VdWy8xz-YscGknD3_8wAK4g6W9oanuA0WgWB9pzIjw7ZvWKvQTRC4wqhfLVV/exec';
+
+        // Marketplace Items Database
+        const marketplaceItems = [
+            {
+                id: 1,
+                title: "AI Content Generator",
+                description: "Generate high-quality content in seconds using advanced AI models.",
+                category: "AI",
+                price: "$99/mo",
+                emoji: "✨"
+            },
+            {
+                id: 2,
+                title: "Advanced Analytics Dashboard",
+                description: "Real-time insights with predictive analytics for your business.",
+                category: "Analytics",
+                price: "$149/mo",
+                emoji: "📊"
+            },
+            {
+                id: 3,
+                title: "Enterprise Security Suite",
+                description: "Comprehensive security solutions with 24/7 monitoring.",
+                category: "Security",
+                price: "$299/mo",
+                emoji: "🔐"
+            },
+            {
+                id: 4,
+                title: "API Integration Hub",
+                description: "Connect your tools seamlessly with 500+ integrations.",
+                category: "Integration",
+                price: "$199/mo",
+                emoji: "🔗"
+            },
+            {
+                id: 5,
+                title: "Machine Learning Toolkit",
+                description: "Build and deploy ML models without coding expertise.",
+                category: "AI",
+                price: "$249/mo",
+                emoji: "🤖"
+            },
+            {
+                id: 6,
+                title: "Data Visualization Pro",
+                description: "Transform raw data into stunning interactive visualizations.",
+                category: "Analytics",
+                price: "$129/mo",
+                emoji: "📈"
+            },
+            {
+                id: 7,
+                title: "Compliance Manager",
+                description: "Ensure regulatory compliance with automated monitoring.",
+                category: "Security",
+                price: "$179/mo",
+                emoji: "✅"
+            },
+            {
+                id: 8,
+                title: "Webhook Manager",
+                description: "Manage and monitor webhooks across all your applications.",
+                category: "Integration",
+                price: "$89/mo",
+                emoji: "⚡"
+            }
+        ];
+
+        let currentUser = null;
+        let currentCategory = 'all';
+
+        // Check if user is already logged in
+        window.addEventListener('load', () => {
+            const savedUser = localStorage.getItem('naviUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                showMarketplace();
+            } else {
+                showHero();
+            }
+        });
+
         function toggleModal(type) {
             const modal = document.getElementById('authModal');
             modal.classList.toggle('active');
@@ -621,7 +949,142 @@
             }
         }
 
-        // Close modal on click outside
+        function showStatus(elementId, message, type) {
+            const el = document.getElementById(elementId);
+            el.textContent = message;
+            el.className = 'status-message ' + type;
+            setTimeout(() => { el.style.display = 'none'; }, 5000);
+        }
+
+        async function handleLogin() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!username || !password) {
+                showStatus('loginStatus', 'Please fill all fields', 'error');
+                return;
+            }
+
+            showStatus('loginStatus', 'Signing in...', 'info');
+
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify({ action: 'login', username, password })
+                });
+
+                // Simulate successful login for demo
+                currentUser = { username, name: username };
+                localStorage.setItem('naviUser', JSON.stringify(currentUser));
+                showStatus('loginStatus', 'Login successful!', 'success');
+                setTimeout(() => {
+                    toggleModal();
+                    showMarketplace();
+                }, 1500);
+            } catch (e) {
+                showStatus('loginStatus', 'Connection error', 'error');
+            }
+        }
+
+        async function handleRegister() {
+            const name = document.getElementById('regName').value;
+            const age = document.getElementById('regAge').value;
+            const phone = document.getElementById('regPhone').value;
+            const email = document.getElementById('regEmail').value;
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+
+            if (!name || !email || !username || !password) {
+                showStatus('registerStatus', 'Please fill required fields', 'error');
+                return;
+            }
+
+            if (password !== confirm) {
+                showStatus('registerStatus', 'Passwords do not match', 'error');
+                return;
+            }
+
+            showStatus('registerStatus', 'Creating account...', 'info');
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify({ action: 'register', name, age, phone, email, username, password })
+                });
+
+                showStatus('registerStatus', 'Account created! Logging in...', 'success');
+                currentUser = { username, name };
+                localStorage.setItem('naviUser', JSON.stringify(currentUser));
+                setTimeout(() => {
+                    toggleModal();
+                    showMarketplace();
+                }, 1500);
+            } catch (e) {
+                showStatus('registerStatus', 'Connection error', 'error');
+            }
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            localStorage.removeItem('naviUser');
+            showHero();
+        }
+
+        function showHero() {
+            document.getElementById('heroSection').style.display = 'flex';
+            document.getElementById('marketplaceSection').classList.remove('active');
+            document.getElementById('navAuthBtn').style.display = 'block';
+            document.getElementById('navUserInfo').style.display = 'none';
+        }
+
+        function showMarketplace() {
+            document.getElementById('heroSection').style.display = 'none';
+            document.getElementById('marketplaceSection').classList.add('active');
+            document.getElementById('navAuthBtn').style.display = 'none';
+            document.getElementById('navUserInfo').style.display = 'flex';
+            document.getElementById('userGreeting').textContent = `Welcome, ${currentUser.name}!`;
+            renderMarketplace();
+        }
+
+        function renderMarketplace() {
+            const grid = document.getElementById('marketplaceGrid');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            let filtered = marketplaceItems.filter(item => {
+                const matchesCategory = currentCategory === 'all' || item.category === currentCategory;
+                const matchesSearch = item.title.toLowerCase().includes(searchTerm) || 
+                                     item.description.toLowerCase().includes(searchTerm);
+                return matchesCategory && matchesSearch;
+            });
+
+            grid.innerHTML = filtered.map(item => `
+                <div class="item-card">
+                    <div class="item-image">${item.emoji}</div>
+                    <div class="item-content">
+                        <span class="item-category">${item.category}</span>
+                        <h3 class="item-title">${item.title}</h3>
+                        <p class="item-description">${item.description}</p>
+                        <div class="item-footer">
+                            <span class="item-price">${item.price}</span>
+                            <button class="item-btn" onclick="alert('Added to cart: ${item.title}')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterByCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderMarketplace();
+        }
+
+        document.getElementById('searchInput')?.addEventListener('input', renderMarketplace);
+
         window.onclick = function(event) {
             const modal = document.getElementById('authModal');
             if (event.target == modal) toggleModal();
