@@ -1016,23 +1016,56 @@
 
             showStatus('registerStatus', 'Creating account...', 'info');
 
-            try {
-                await fetch(GOOGLE_SCRIPT_URL, {
-                    
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-               body: JSON.stringify({ 
-                   action: 'register',
-                   name,
-                   age,
-                   phone,
-                   email,
-                   username,
-                   password
-               })
-            });
+          try {
+              const response = await fetch(GOOGLE_SCRIPT_URL,{
+                  
+                  method:"POST",
+                  headers:{
+                      
+                      "Content-Type":"application/json"
+                  },
+                  body:JSON.stringify({
+                  
+                      action:"register",
+                      name,
+                      age,
+                      phone,
+                      email,
+                      username,
+                      password
+                  })  
+             });
+
+             const result = await response.json();
+
+             if(result.status==="success"){
+                 showStatus(
+                  
+                 "registerStatus",
+                 "Account created successfully",
+                 "success"
+              );
+
+          }else{
+                 
+                 
+                 showStatus(
+                     
+                     "registerStatus",
+                     result.message,
+                     "error"
+                   );
+             } 
+
+          }catch(error){
+              
+              showStatus(
+              "registerStatus",
+              "Connection error",
+              "error"
+           );
+           console.log(error);
+         }
                 showStatus('registerStatus', 'Account created! Logging in...', 'success');
                 currentUser = { username, name };
                 localStorage.setItem('naviUser', JSON.stringify(currentUser));
