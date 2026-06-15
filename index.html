@@ -840,7 +840,7 @@
 
     <script>
         // PASTE YOUR GOOGLE SCRIPT URL BELOW
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrPhA6ZuG0wYuuWpTcOWeAEBmZ25r4FMAxWk-uKE6TIEe2brdDcJP0JOp0kgTyKSopnQ/exec";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrPhA6ZuG0wYuuWpTcOWeAEBmZ25r4FMAxWk-uKE6TIEe2brdDcJP0JOp0kgTyKSopnQ/exec"; // REPLACE WITH YOUR DEPLOYED GOOGLE APPS SCRIPT URL
 
         // Marketplace Items Database
         const marketplaceItems = [
@@ -913,8 +913,7 @@
         let currentUser = null;
         let currentCategory = 'all';
 
-        // Check if user is already logged in
-        window.addEventListener('load', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const savedUser = localStorage.getItem('naviUser');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
@@ -953,6 +952,7 @@
             const el = document.getElementById(elementId);
             el.textContent = message;
             el.className = 'status-message ' + type;
+            el.style.display = 'block'; // Ensure it's visible
             setTimeout(() => { el.style.display = 'none'; }, 5000);
         }
 
@@ -971,27 +971,31 @@
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     headers: {
-                        
-                        "Content-Type": "application/json"
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        
                         action: 'login',
                         username,
                         password
                     })
                 });
 
-                // Simulate successful login for demo
-                currentUser = { username, name: username };
-                localStorage.setItem('naviUser', JSON.stringify(currentUser));
-                showStatus('loginStatus', 'Login successful!', 'success');
-                setTimeout(() => {
-                    toggleModal();
-                    showMarketplace();
-                }, 1500);
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    currentUser = { username: result.username, name: result.name }; // Assuming script returns username and name
+                    localStorage.setItem('naviUser', JSON.stringify(currentUser));
+                    showStatus('loginStatus', 'Login successful!', 'success');
+                    setTimeout(() => {
+                        toggleModal();
+                        showMarketplace();
+                    }, 1500);
+                } else {
+                    showStatus('loginStatus', result.message || 'Login failed. Please check your credentials.', 'error');
+                }
             } catch (e) {
-                showStatus('loginStatus', 'Connection error', 'error');
+                console.error('Login error:', e);
+                showStatus('loginStatus', 'Connection error or server issue.', 'error');
             }
         }
 
@@ -1004,8 +1008,8 @@
             const password = document.getElementById('regPassword').value;
             const confirm = document.getElementById('regConfirm').value;
 
-            if (!name || !email || !username || !password) {
-                showStatus('registerStatus', 'Please fill required fields', 'error');
+            if (!name || !email || !username || !password || !confirm) {
+                showStatus('registerStatus', 'Please fill all required fields', 'error');
                 return;
             }
 
@@ -1016,65 +1020,41 @@
 
             showStatus('registerStatus', 'Creating account...', 'info');
 
-          try {
-              const response = await fetch(GOOGLE_SCRIPT_URL,{
-                  
-                  method:"POST",
-                  headers:{
-                      
-                      "Content-Type":"application/json"
-                  },
-                  body:JSON.stringify({
-                  
-                      action:"register",
-                      name,
-                      age,
-                      phone,
-                      email,
-                      username,
-                      password
-                  })  
-             });
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'register',
+                        name,
+                        age,
+                        phone,
+                        email,
+                        username,
+                        password
+                    })
+                });
 
-             const result = await response.json();
+                const result = await response.json();
 
-             if(result.status==="success"){
-                 showStatus(
-                  
-                 "registerStatus",
-                 "Account created successfully",
-                 "success"
-              );
-
-          }else{
-                 
-                 
-                 showStatus(
-                     
-                     "registerStatus",
-                     result.message,
-                     "error"
-                   );
-             } 
-
-          }catch(error){
-              
-              showStatus(
-              "registerStatus",
-              "Connection error",
-              "error"
-           );
-           console.log(error);
-         }
-                showStatus('registerStatus', 'Account created! Logging in...', 'success');
-                currentUser = { username, name };
-                localStorage.setItem('naviUser', JSON.stringify(currentUser));
-                setTimeout(() => {
-                    toggleModal();
-                    showMarketplace();
-                }, 1500);
+                if (result.status === 'success') {
+                    showStatus('registerStatus', 'Account created successfully! Please log in.', 'success');
+                    // Optionally, automatically log in the user after successful registration
+                    // currentUser = { username: result.username, name: result.name }; 
+                    // localStorage.setItem('naviUser', JSON.stringify(currentUser));
+                    setTimeout(() => {
+                        switchTab('login'); // Switch to login tab after successful registration
+                        // toggleModal(); // Close modal if auto-logging in
+                        // showMarketplace(); // Show marketplace if auto-logging in
+                    }, 1500);
+                } else {
+                    showStatus('registerStatus', result.message || 'Registration failed. Please try again.', 'error');
+                }
             } catch (e) {
-                showStatus('registerStatus', 'Connection error', 'error');
+                console.error('Registration error:', e);
+                showStatus('registerStatus', 'Connection error or server issue.', 'error');
             }
         }
 
@@ -1096,7 +1076,7 @@
             document.getElementById('marketplaceSection').classList.add('active');
             document.getElementById('navAuthBtn').style.display = 'none';
             document.getElementById('navUserInfo').style.display = 'flex';
-            document.getElementById('userGreeting').textContent = `Welcome, ${currentUser.name}!`;
+            document.getElementById('userGreeting').textContent = `Welcome, ${currentUser.name || currentUser.username}!`;
             renderMarketplace();
         }
 
