@@ -405,7 +405,69 @@
         </div>
 
         <!-- ───── LOGIN ───── -->
-        <div class="section active" id="section-login">
+        <div class="section active" id="section-login"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaVi Global | Sign In</title>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --primary-glow: rgba(14,165,233,0.25);
+            --bg-dark: #081120;
+            --bg-card: #0f1f38;
+            --bg-input: #071020;
+            --border: rgba(14,165,233,0.18);
+            --border-focus: rgba(14,165,233,0.7);
+            --text-white: #f0f6ff;
+            --text-gray: #7ea3c4;
+            --text-label: #94b4cc;
+            --error: #f87171;
+            --success: #4ade80;
+            --warn: #f8be71;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Segoe UI', Helvetica, Arial, sans-serif;
+            padding: 20px;
+        }
+
+        /* Background grid */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(14,165,233,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14,165,233,0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Glow orbs */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+
 
             <div class="toast" id="login-toast">
                 <span class="toast-icon" id="login-icon">ℹ</span>
