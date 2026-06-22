@@ -3,1174 +3,928 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NaVi Global | AI-Powered Business Solutions</title>
+    <title>NaVi Global | Sign In</title>
     <style>
         :root {
             --primary: #0ea5e9;
             --primary-dark: #0284c7;
+            --primary-glow: rgba(14,165,233,0.25);
             --bg-dark: #081120;
-            --bg-card: #112240;
-            --text-white: #ffffff;
-            --text-gray: #94a3b8;
+            --bg-card: #0f1f38;
+            --bg-input: #071020;
+            --border: rgba(14,165,233,0.18);
+            --border-focus: rgba(14,165,233,0.7);
+            --text-white: #f0f6ff;
+            --text-gray: #7ea3c4;
+            --text-label: #94b4cc;
+            --error: #f87171;
+            --success: #4ade80;
+            --warn: #f8be71;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            line-height: 1.6;
-            overflow-x: hidden;
+            min-height: 100vh;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Segoe UI', Helvetica, Arial, sans-serif;
+            padding: 20px;
         }
 
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: rgba(13, 27, 42, 0.95);
-            backdrop-filter: blur(10px);
+        /* Background grid */
+        body::before {
+            content: '';
             position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(14,165,233,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14,165,233,0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .logo {
+        /* Glow orbs */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page-wrap {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        /* Logo */
+        .logo-row {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
+            margin-bottom: 32px;
             text-decoration: none;
         }
-
-        .logo img {
-            width: 50px;
-            height: 50px;
+        .logo-row img {
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             border: 2px solid var(--primary);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 0 18px var(--primary-glow);
         }
-
-        .logo h2 {
-            font-size: 22px;
+        .logo-row span {
+            font-size: 24px;
             font-weight: 700;
             color: var(--text-white);
             letter-spacing: -0.5px;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        .nav-btn {
-            background: var(--primary);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .nav-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .user-greeting {
-            font-size: 14px;
-            color: var(--text-gray);
-        }
-
-        .logout-btn {
-            background: #ef4444;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            color: white;
-            transition: all 0.3s;
-        }
-
-        .logout-btn:hover {
-            background: #dc2626;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: var(--bg-dark);
-        }
-
-        .video-background iframe {
-            width: 100vw;
-            height: 56.25vw;
-            min-height: 100vh;
-            min-width: 177.77vh;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            opacity: 0.5;
-        }
-
-        .video-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #081120 0%, #0d1b2a 100%);
-            z-index: -2;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(8, 17, 32, 0.4) 0%, rgba(8, 17, 32, 0.8) 100%);
-            z-index: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 900px;
-            padding: 0 20px;
-        }
-
-        .hero-logo-large {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 4px solid var(--primary);
-            margin: 0 auto 30px;
-            box-shadow: 0 0 30px rgba(14, 165, 233, 0.4);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 20px rgba(14, 165, 233, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(14, 165, 233, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 0 20px rgba(14, 165, 233, 0.4); }
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 8vw, 72px);
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.1;
-            letter-spacing: -2px;
-        }
-
-        .hero p {
-            font-size: clamp(16px, 3vw, 22px);
-            color: var(--text-gray);
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .main-btn {
-            background: var(--primary);
-            color: white;
-            padding: 16px 40px;
-            border-radius: 35px;
-            font-size: 18px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .main-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
-        }
-
-        /* Marketplace Section */
-        .marketplace {
-            display: none;
-            padding: 100px 5%;
-            min-height: 100vh;
-            padding-top: 120px;
-        }
-
-        .marketplace.active {
-            display: block;
-        }
-
-        .marketplace-header {
-            margin-bottom: 50px;
-        }
-
-        .marketplace-header h1 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .marketplace-header p {
-            color: var(--text-gray);
-            font-size: 18px;
-        }
-
-        .search-bar {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .search-input {
-            flex: 1;
-            min-width: 250px;
-            padding: 12px 20px;
-            background: rgba(8, 17, 32, 0.6);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            border-radius: 12px;
-            color: white;
-            font-size: 15px;
-        }
-
-        .search-input::placeholder {
-            color: var(--text-gray);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
-        }
-
-        .category-filters {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .category-btn {
-            padding: 8px 18px;
-            background: rgba(8, 17, 32, 0.6);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            border-radius: 20px;
-            color: var(--text-gray);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-
-        .category-btn:hover,
-        .category-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: white;
-        }
-
-        .marketplace-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .item-card {
+        /* Card */
+        .card {
             background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(14, 165, 233, 0.1);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .item-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
-        }
-
-        .item-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-        }
-
-        .item-content {
-            padding: 20px;
-        }
-
-        .item-category {
-            display: inline-block;
-            background: rgba(14, 165, 233, 0.2);
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .item-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .item-description {
-            color: var(--text-gray);
-            font-size: 14px;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .item-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .item-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .item-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .item-btn:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 5%;
-            background: rgba(8, 17, 32, 0.8);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .section-header p {
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            padding: 40px;
+            border: 1px solid var(--border);
             border-radius: 20px;
-            border: 1px solid rgba(14, 165, 233, 0.1);
-            transition: all 0.3s;
+            padding: 36px 40px;
+            box-shadow: 0 32px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(14,165,233,0.05);
         }
 
-        .feature-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .feature-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        /* Auth Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal.active {
+        /* Tab bar */
+        .tabs {
             display: flex;
-        }
-
-        .modal-content {
-            background: var(--bg-card);
-            width: 100%;
-            max-width: 450px;
-            border-radius: 24px;
-            position: relative;
-            padding: 40px;
-            border: 1px solid rgba(14, 165, 233, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 28px;
-            color: var(--text-gray);
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-btn:hover {
-            color: var(--primary);
-        }
-
-        .tab-group {
-            display: flex;
-            margin-bottom: 30px;
-            background: rgba(8, 17, 32, 0.5);
-            padding: 5px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
             border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 32px;
+            gap: 4px;
         }
-
         .tab {
             flex: 1;
-            padding: 10px;
+            padding: 9px 0;
             text-align: center;
-            cursor: pointer;
-            border-radius: 8px;
+            font-size: 14px;
             font-weight: 600;
             color: var(--text-gray);
-            transition: all 0.3s;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            user-select: none;
         }
-
         .tab.active {
             background: var(--primary);
-            color: white;
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(14,165,233,0.35);
         }
+        .tab:not(.active):hover { color: var(--text-white); }
 
-        .form-section {
+        /* Sections */
+        .section { display: none; }
+        .section.active { display: block; }
+
+        /* Toast */
+        .toast {
             display: none;
-        }
-
-        .form-section.active {
-            display: block;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-gray);
-        }
-
-        .input-group input {
-            width: 100%;
+            align-items: center;
+            gap: 10px;
             padding: 12px 16px;
-            background: rgba(8, 17, 32, 0.6);
-            border: 1px solid rgba(14, 165, 233, 0.2);
             border-radius: 10px;
-            color: white;
+            margin-bottom: 22px;
+            font-size: 13.5px;
+            font-weight: 500;
+            border: 1px solid;
+        }
+        .toast.show { display: flex; }
+        .toast.info { background: rgba(14,165,233,0.1); color: var(--primary); border-color: rgba(14,165,233,0.25); }
+        .toast.error { background: rgba(248,113,113,0.1); color: var(--error); border-color: rgba(248,113,113,0.25); }
+        .toast.success { background: rgba(74,222,128,0.1); color: var(--success); border-color: rgba(74,222,128,0.25); }
+        .toast-icon { font-size: 16px; flex-shrink: 0; }
+
+        /* Form heading */
+        .form-heading { font-size: 22px; font-weight: 700; color: var(--text-white); margin-bottom: 4px; }
+        .form-sub { font-size: 13.5px; color: var(--text-gray); margin-bottom: 26px; }
+
+        /* Fields */
+        .field { margin-bottom: 18px; }
+        .field label {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-label);
+            margin-bottom: 6px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .input-wrap { position: relative; }
+        .input-wrap .icon {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: var(--text-gray);
+            pointer-events: none;
+        }
+        .input-wrap input {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 11px 14px 11px 40px;
+            color: var(--text-white);
             font-size: 15px;
-            transition: all 0.3s;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
-
-        .input-group input:focus {
+        .input-wrap input:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgba(14,165,233,0.12);
         }
+        .input-wrap input::placeholder { color: #3a556e; }
+        .input-wrap input.error-field { border-color: rgba(248,113,113,0.5); }
 
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
+        /* Toggle password */
+        .toggle-pw {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-gray);
+            font-size: 16px;
+            padding: 2px;
+            transition: color 0.2s;
         }
+        .toggle-pw:hover { color: var(--primary); }
 
+        /* Two-column grid */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+        /* Strength meter */
+        .strength-meter { margin-top: 8px; display: none; }
+        .strength-bars { display: flex; gap: 4px; margin-bottom: 5px; }
+        .bar { height: 3px; flex: 1; background: var(--border); border-radius: 2px; transition: background 0.3s; }
+        .bar.filled.weak { background: var(--error); }
+        .bar.filled.fair { background: var(--warn); }
+        .bar.filled.strong { background: var(--success); }
+        .strength-text { font-size: 11.5px; color: var(--text-gray); }
+
+        /* Field hint */
+        .field-hint { font-size: 11.5px; color: var(--text-gray); margin-top: 5px; }
+        .field-hint.err { color: var(--error); }
+
+        /* Submit btn */
         .submit-btn {
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             background: var(--primary);
-            color: white;
+            color: #fff;
             border: none;
-            border-radius: 12px;
-            font-size: 16px;
+            border-radius: 11px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
+            transition: all 0.22s;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-
-        .submit-btn:hover {
+        .submit-btn:hover:not(:disabled) {
             background: var(--primary-dark);
-            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14,165,233,0.35);
+            transform: translateY(-1px);
         }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 25px 0;
-            color: var(--text-gray);
-            font-size: 14px;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid rgba(14, 165, 233, 0.2);
-        }
-
-        .divider:not(:empty)::before { margin-right: 15px; }
-        .divider:not(:empty)::after { margin-left: 15px; }
-
-        .google-btn {
-            width: 100%;
-            padding: 12px;
-            background: white;
-            color: #1f2937;
-            border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .google-btn:hover {
-            background: #f3f4f6;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .google-btn img {
-            width: 20px;
-            height: 20px;
-        }
-
-        .status-message {
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            display: none;
-        }
-
-        .status-message.info { background: rgba(14, 165, 233, 0.1); color: var(--primary); }
-        .status-message.error { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
-        .status-message.success { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
-
-        footer {
-            padding: 80px 5% 40px;
-            background: #060d18;
-            text-align: center;
-            border-top: 1px solid rgba(14, 165, 233, 0.1);
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .footer-logo img {
-            width: 40px;
-            height: 40px;
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .spinner {
+            width: 16px; height: 16px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: white;
             border-radius: 50%;
+            animation: spin 0.7s linear infinite;
         }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-links a {
+        /* Divider */
+        .divider {
+            display: flex; align-items: center; gap: 12px;
+            margin: 22px 0;
             color: var(--text-gray);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .copyright {
-            color: #475569;
             font-size: 13px;
         }
+        .divider::before, .divider::after {
+            content: ''; flex: 1;
+            height: 1px; background: var(--border);
+        }
 
-        @media (max-width: 768px) {
-            nav ul { display: none; }
-            .hero h1 { font-size: 48px; }
-            .input-row { grid-template-columns: 1fr; }
+        /* Google btn */
+        .google-btn {
+            width: 100%;
+            padding: 11px;
+            background: #fff;
+            color: #111;
+            border: none;
+            border-radius: 11px;
+            font-size: 14.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.22s;
+        }
+        .google-btn:hover { background: #f1f5f9; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
+        .google-btn img { width: 18px; height: 18px; }
+
+        /* Forgot / switch */
+        .form-footer {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 13.5px;
+            color: var(--text-gray);
+        }
+        .form-footer a, .text-link {
+            color: var(--primary);
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 600;
+            background: none; border: none; font-size: 13.5px;
+        }
+        .form-footer a:hover, .text-link:hover { text-decoration: underline; }
+
+        /* Agree checkbox */
+        .agree-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 18px 0 4px;
+        }
+        .agree-row input[type=checkbox] {
+            width: 16px; height: 16px;
+            margin-top: 2px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .agree-row label {
+            font-size: 13px;
+            color: var(--text-gray);
+            cursor: pointer;
+            line-height: 1.5;
+        }
+        .agree-row label a { color: var(--primary); text-decoration: none; }
+
+        /* Step indicator (register) */
+        .steps {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 28px;
+        }
+        .step-dot {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 700;
+            color: var(--text-gray);
+            background: var(--bg-input);
+            transition: all 0.25s;
+            flex-shrink: 0;
+        }
+        .step-dot.active { border-color: var(--primary); color: var(--primary); background: rgba(14,165,233,0.1); }
+        .step-dot.done { background: var(--primary); border-color: var(--primary); color: white; }
+        .step-line { flex: 1; height: 1.5px; background: var(--border); transition: background 0.25s; }
+        .step-line.done { background: var(--primary); }
+        .step-label { font-size: 11px; color: var(--text-gray); margin-top: 4px; text-align: center; }
+
+        /* Back link */
+        .back-link {
+            background: none; border: none;
+            color: var(--text-gray);
+            font-size: 13.5px; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 5px;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--primary); }
+
+        /* Success state */
+        .success-state {
+            text-align: center;
+            padding: 20px 0 10px;
+        }
+        .success-icon {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: rgba(74,222,128,0.12);
+            border: 1.5px solid rgba(74,222,128,0.35);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 18px;
+        }
+        .success-state h3 { font-size: 20px; font-weight: 700; color: var(--text-white); margin-bottom: 8px; }
+        .success-state p { font-size: 14px; color: var(--text-gray); }
+
+        @media (max-width: 520px) {
+            .card { padding: 28px 22px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 0; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="#" class="logo">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global Logo">
-            <h2>NaVi Global</h2>
-        </a>
-        <div class="user-info" id="navUserInfo" style="display: none;">
-            <span class="user-greeting" id="userGreeting">Welcome!</span>
-            <button class="logout-btn" onclick="handleLogout()">Logout</button>
-        </div>
-        <div id="navAuthBtn">
-            <button class="nav-btn" onclick="toggleModal('login')">Sign In</button>
-        </div>
-    </nav>
+<div class="page-wrap">
 
-    <section class="hero" id="heroSection">
-        <div class="video-background">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0&loop=1&playlist=dQw4w9WgXcQ" frameborder="0"></iframe>
-        </div>
-        <div class="video-fallback"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global Logo" class="hero-logo-large">
-            <h1>Scale Your Vision Globally</h1>
-            <p>Empowering modern enterprises with AI-driven connectivity, growth strategies, and seamless success pathways.</p>
-            <div class="cta-group">
-                <button class="main-btn" onclick="toggleModal('register')">Get Started Free</button>
-            </div>
-        </div>
-    </section>
+    <!-- Logo -->
+    <a href="index.html" class="logo-row">
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global">
+        <span>NaVi Global</span>
+    </a>
 
-    <!-- Marketplace Section -->
-    <section class="marketplace" id="marketplaceSection">
-        <div class="marketplace-header">
-            <h1>Welcome to NaVi Global Marketplace</h1>
-            <p>Explore our premium AI-powered services and solutions</p>
+    <div class="card">
+        <!-- Tab bar -->
+        <div class="tabs">
+            <div class="tab active" id="tab-login" onclick="switchTab('login')">Sign In</div>
+            <div class="tab" id="tab-register" onclick="switchTab('register')">Create Account</div>
         </div>
 
-        <div class="search-bar">
-            <input type="text" class="search-input" id="searchInput" placeholder="Search services...">
-            <div class="category-filters">
-                <button class="category-btn active" onclick="filterByCategory('all')">All</button>
-                <button class="category-btn" onclick="filterByCategory('AI')">AI Solutions</button>
-                <button class="category-btn" onclick="filterByCategory('Analytics')">Analytics</button>
-                <button class="category-btn" onclick="filterByCategory('Security')">Security</button>
-                <button class="category-btn" onclick="filterByCategory('Integration')">Integration</button>
-            </div>
-        </div>
+        <!-- ───── LOGIN ───── -->
+        <div class="section active" id="section-login">
 
-        <div class="marketplace-grid" id="marketplaceGrid"></div>
-    </section>
-
-    <section id="features" class="features">
-        <div class="section-header">
-            <h2>Our Core Capabilities</h2>
-            <p>Everything you need to grow your business in the digital age.</p>
-        </div>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>AI Intelligence</h3>
-                <p>Leverage machine learning to predict market trends and automate customer interactions with precision.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Global Network</h3>
-                <p>Connect with partners and clients across 150+ countries through our high-speed, secure infrastructure.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Smart Analytics</h3>
-                <p>Real-time data visualization that turns complex business metrics into actionable growth strategies.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Auth Modal -->
-    <div class="modal" id="authModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="toggleModal()">&times;</span>
-            <div class="tab-group">
-                <div class="tab" id="loginTab" onclick="switchTab('login')">Login</div>
-                <div class="tab" id="registerTab" onclick="switchTab('register')">Register</div>
+            <div class="toast" id="login-toast">
+                <span class="toast-icon" id="login-icon">ℹ</span>
+                <span id="login-msg"></span>
             </div>
 
-            <!-- Login Form -->
-            <div id="loginSection" class="form-section">
-                <div id="loginStatus" class="status-message"></div>
-                <div class="input-group">
+            <h2 class="form-heading">Welcome back</h2>
+            <p class="form-sub">Sign in to your NaVi Global account</p>
+
+            <div class="field">
+                <label>Email Address</label>
+                <div class="input-wrap">
+                    <span class="icon">✉</span>
+                    <input type="email" id="l-email" placeholder="you@example.com" autocomplete="email">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Password</label>
+                <div class="input-wrap">
+                    <span class="icon">🔒</span>
+                    <input type="password" id="l-password" placeholder="••••••••" autocomplete="current-password" id="l-pw">
+                    <button class="toggle-pw" type="button" onclick="togglePw('l-password', this)" aria-label="Show password">👁</button>
+                </div>
+                <div style="text-align:right; margin-top:6px;">
+                    <button class="text-link" onclick="showForgot()">Forgot password?</button>
+                </div>
+            </div>
+
+            <button class="submit-btn" id="login-btn" onclick="handleLogin()">
+                Sign In
+            </button>
+
+            <div class="divider">or continue with</div>
+
+            <button class="google-btn" onclick="handleGoogle()">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                Google
+            </button>
+
+            <div class="form-footer">
+                Don't have an account? <button class="text-link" onclick="switchTab('register')">Create one free</button>
+            </div>
+        </div>
+
+        <!-- ───── FORGOT PASSWORD ───── -->
+        <div class="section" id="section-forgot">
+            <button class="back-link" onclick="showSection('login')">← Back to Sign In</button>
+            <div class="toast" id="forgot-toast">
+                <span class="toast-icon" id="forgot-icon">ℹ</span>
+                <span id="forgot-msg"></span>
+            </div>
+            <h2 class="form-heading">Reset your password</h2>
+            <p class="form-sub">We'll send a reset link to your email</p>
+            <div class="field">
+                <label>Email Address</label>
+                <div class="input-wrap">
+                    <span class="icon">✉</span>
+                    <input type="email" id="forgot-email" placeholder="you@example.com">
+                </div>
+            </div>
+            <button class="submit-btn" id="forgot-btn" onclick="handleForgot()">Send Reset Link</button>
+        </div>
+
+        <!-- ───── REGISTER ───── -->
+        <div class="section" id="section-register">
+
+            <!-- Steps -->
+            <div style="margin-bottom:10px;">
+                <div class="steps" id="step-row">
+                    <div class="step-dot active" id="s1">1</div>
+                    <div class="step-line" id="l1"></div>
+                    <div class="step-dot" id="s2">2</div>
+                    <div class="step-line" id="l2"></div>
+                    <div class="step-dot" id="s3">3</div>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:0 0;">
+                    <span class="step-label">Account</span>
+                    <span class="step-label">Profile</span>
+                    <span class="step-label">Verify</span>
+                </div>
+            </div>
+
+            <div class="toast" id="reg-toast">
+                <span class="toast-icon" id="reg-icon">ℹ</span>
+                <span id="reg-msg"></span>
+            </div>
+
+            <!-- Step 1: Account -->
+            <div id="reg-step1">
+                <h2 class="form-heading">Create your account</h2>
+                <p class="form-sub">Start with your email and a strong password</p>
+
+                <div class="field">
                     <label>Email Address</label>
-                    <input type="email" id="loginEmail" placeholder="your@email.com">
+                    <div class="input-wrap">
+                        <span class="icon">✉</span>
+                        <input type="email" id="r-email" placeholder="you@example.com" autocomplete="email">
+                    </div>
                 </div>
-                <div class="input-group">
+
+                <div class="field">
+                    <label>Username</label>
+                    <div class="input-wrap">
+                        <span class="icon">@</span>
+                        <input type="text" id="r-username" placeholder="yourhandle" autocomplete="username" oninput="checkUsername(this)">
+                    </div>
+                    <div class="field-hint" id="username-hint"></div>
+                </div>
+
+                <div class="field">
                     <label>Password</label>
-                    <input type="password" id="loginPassword" placeholder="••••••••">
+                    <div class="input-wrap">
+                        <span class="icon">🔒</span>
+                        <input type="password" id="r-pw" placeholder="Min 8 characters" oninput="checkStrength(this.value)">
+                        <button class="toggle-pw" type="button" onclick="togglePw('r-pw', this)">👁</button>
+                    </div>
+                    <div class="strength-meter" id="strength-wrap">
+                        <div class="strength-bars">
+                            <div class="bar" id="b1"></div>
+                            <div class="bar" id="b2"></div>
+                            <div class="bar" id="b3"></div>
+                            <div class="bar" id="b4"></div>
+                        </div>
+                        <span class="strength-text" id="strength-label"></span>
+                    </div>
                 </div>
-                <button class="submit-btn" onclick="handleLogin()">Sign In</button>
-                
-                <div class="divider">or</div>
-                
-                <button class="google-btn" onclick="handleGoogleLogin()">
+
+                <div class="field">
+                    <label>Confirm Password</label>
+                    <div class="input-wrap">
+                        <span class="icon">🔒</span>
+                        <input type="password" id="r-confirm" placeholder="Repeat password" oninput="matchCheck()">
+                        <button class="toggle-pw" type="button" onclick="togglePw('r-confirm', this)">👁</button>
+                    </div>
+                    <div class="field-hint" id="match-hint"></div>
+                </div>
+
+                <button class="submit-btn" onclick="goStep2()">Continue →</button>
+
+                <div class="divider">or sign up with</div>
+                <button class="google-btn" onclick="handleGoogle()">
                     <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
-                    Continue with Google
+                    Google
                 </button>
+
+                <div class="form-footer">
+                    Already have an account? <button class="text-link" onclick="switchTab('login')">Sign in</button>
+                </div>
             </div>
 
-            <!-- Register Form -->
-            <div id="registerSection" class="form-section">
-                <div id="registerStatus" class="status-message"></div>
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Name</label>
-                        <input type="text" id="regName" placeholder="Full name">
+            <!-- Step 2: Profile -->
+            <div id="reg-step2" style="display:none;">
+                <button class="back-link" onclick="goBack1()">← Back</button>
+                <h2 class="form-heading">Tell us about you</h2>
+                <p class="form-sub">Your profile details</p>
+
+                <div class="grid-2">
+                    <div class="field">
+                        <label>Full Name</label>
+                        <div class="input-wrap">
+                            <span class="icon">👤</span>
+                            <input type="text" id="r-name" placeholder="Jane Doe" autocomplete="name">
+                        </div>
                     </div>
-                    <div class="input-group">
+                    <div class="field">
                         <label>Age</label>
-                        <input type="number" id="regAge" placeholder="Age">
-                    </div>
-                </div>
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Phone</label>
-                        <input type="tel" id="regPhone" placeholder="+1...">
-                    </div>
-                    <div class="input-group">
-                        <label>Email</label>
-                        <input type="email" id="regEmail" placeholder="email@example.com">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label>Create Username</label>
-                    <input type="text" id="regUsername" placeholder="Unique username">
-                </div>
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Password</label>
-                        <input type="password" id="regPassword" placeholder="••••••••">
-                    </div>
-                    <div class="input-group">
-                        <label>Confirm</label>
-                        <input type="password" id="regConfirm" placeholder="••••••••">
-                    </div>
-                </div>
-                <button class="submit-btn" onclick="handleRegister()">Create Account</button>
-                
-                <div class="divider">or</div>
-                
-                <button class="google-btn" onclick="handleGoogleLogin()">
-                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
-                    Sign up with Google
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-logo">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global">
-            <h2>NaVi Global</h2>
-        </div>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Support</a>
-        </div>
-        <p class="copyright">© 2026 NaVi Global. All rights reserved.</p>
-    </footer>
-
-    <!-- Firebase SDKs (Modular v10) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { 
-            getAuth, 
-            createUserWithEmailAndPassword, 
-            signInWithEmailAndPassword, 
-            signOut, 
-            onAuthStateChanged,
-            GoogleAuthProvider,
-            signInWithPopup
-        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { 
-            getFirestore, 
-            doc, 
-            setDoc, 
-            getDoc,
-            serverTimestamp
-        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        // Your Firebase Config (Preserved)
-        const firebaseConfig = {
-            apiKey: "AIzaSyDkdrdBx3nZl0X1h156PSB3PNIVMGPxKf0",
-            authDomain: "navi-global.firebaseapp.com",
-            projectId: "navi-global",
-            storageBucket: "navi-global.firebasestorage.app",
-            messagingSenderId: "382402294470",
-            appId: "1:382402294470:web:cbf4c578b61aba83651dc7",
-            measurementId: "G-XKVMT4G634"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const googleProvider = new GoogleAuthProvider();
-
-        // Marketplace Items
-        const marketplaceItems = [
-            { id: 1, title: "AI Content Generator", description: "Generate high-quality content in seconds using advanced AI models.", category: "AI", price: "$99/mo", emoji: "✨" },
-            { id: 2, title: "Advanced Analytics Dashboard", description: "Real-time insights with predictive analytics for your business.", category: "Analytics", price: "$149/mo", emoji: "📊" },
-            { id: 3, title: "Enterprise Security Suite", description: "Comprehensive security solutions with 24/7 monitoring.", category: "Security", price: "$299/mo", emoji: "🔐" },
-            { id: 4, title: "API Integration Hub", description: "Connect your tools seamlessly with 500+ integrations.", category: "Integration", price: "$199/mo", emoji: "🔗" },
-            { id: 5, title: "Machine Learning Toolkit", description: "Build and deploy ML models without coding expertise.", category: "AI", price: "$249/mo", emoji: "🤖" },
-            { id: 6, title: "Data Visualization Pro", description: "Transform raw data into stunning interactive visualizations.", category: "Analytics", price: "$129/mo", emoji: "📈" },
-            { id: 7, title: "Compliance Manager", description: "Ensure regulatory compliance with automated monitoring.", category: "Security", price: "$179/mo", emoji: "✅" },
-            { id: 8, title: "Webhook Manager", description: "Manage and monitor webhooks across all your applications.", category: "Integration", price: "$89/mo", emoji: "⚡" }
-        ];
-
-        let currentUserData = null;
-        let currentCategory = 'all';
-
-        // Listen for Auth State Changes
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                const userDoc = await getDoc(doc(db, "users", user.uid));
-                if (userDoc.exists()) {
-                    currentUserData = userDoc.data();
-                    showMarketplace();
-                } else {
-                    // Case for Google login where doc might not exist yet
-                    // But we handle it in handleGoogleLogin. If somehow missed:
-                    console.log("Creating default profile for existing user...");
-                    const defaultData = {
-                        uid: user.uid,
-                        name: user.displayName || "Google User",
-                        email: user.email,
-                        username: user.email.split('@')[0],
-                        createdAt: new Date().toISOString()
-                    };
-                    await setDoc(doc(db, "users", user.uid), defaultData);
-                    currentUserData = defaultData;
-                    showMarketplace();
-                }
-            } else {
-                currentUserData = null;
-                showHero();
-            }
-        });
-
-        // UI Functions
-        window.toggleModal = (type) => {
-            const modal = document.getElementById('authModal');
-            modal.classList.toggle('active');
-            if (type) switchTab(type);
-        };
-
-        window.switchTab = (type) => {
-            const loginTab = document.getElementById('loginTab');
-            const registerTab = document.getElementById('registerTab');
-            const loginSection = document.getElementById('loginSection');
-            const registerSection = document.getElementById('registerSection');
-
-            if (type === 'login') {
-                loginTab.classList.add('active');
-                registerTab.classList.remove('active');
-                loginSection.classList.add('active');
-                registerSection.classList.remove('active');
-            } else {
-                registerTab.classList.add('active');
-                loginTab.classList.remove('active');
-                registerSection.classList.add('active');
-                loginSection.classList.remove('active');
-            }
-        };
-
-        function showStatus(elementId, message, type) {
-            const el = document.getElementById(elementId);
-            el.textContent = message;
-            el.className = 'status-message ' + type;
-            el.style.display = 'block';
-            setTimeout(() => { el.style.display = 'none'; }, 5000);
-        }
-
-        // Firebase Auth Logic
-        window.handleLogin = async () => {
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-
-            if (!email || !password) {
-                showStatus('loginStatus', 'Please fill all fields', 'error');
-                return;
-            }
-
-            showStatus('loginStatus', 'Signing in...', 'info');
-
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-                showStatus('loginStatus', 'Login successful!', 'success');
-                setTimeout(() => toggleModal(), 1000);
-            } catch (error) {
-                console.error("Login error:", error);
-                showStatus('loginStatus', error.message, 'error');
-            }
-        };
-
-        window.handleRegister = async () => {
-            const name = document.getElementById('regName').value;
-            const age = document.getElementById('regAge').value;
-            const phone = document.getElementById('regPhone').value;
-            const email = document.getElementById('regEmail').value;
-            const username = document.getElementById('regUsername').value;
-            const password = document.getElementById('regPassword').value;
-            const confirm = document.getElementById('regConfirm').value;
-
-            if (!name || !email || !username || !password || !confirm) {
-                showStatus('registerStatus', 'Please fill all required fields', 'error');
-                return;
-            }
-
-            if (password !== confirm) {
-                showStatus('registerStatus', 'Passwords do not match', 'error');
-                return;
-            }
-
-            showStatus('registerStatus', 'Creating account...', 'info');
-
-            try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-
-                await setDoc(doc(db, "users", user.uid), {
-                    uid: user.uid,
-                    name: name,
-                    age: age,
-                    phone: phone,
-                    email: email,
-                    username: username,
-                    createdAt: new Date().toISOString()
-                });
-
-                showStatus('registerStatus', 'Account created successfully!', 'success');
-                setTimeout(() => toggleModal(), 1500);
-            } catch (error) {
-                console.error("Registration error:", error);
-                showStatus('registerStatus', error.message, 'error');
-            }
-        };
-
-        window.handleGoogleLogin = async () => {
-            const statusId = document.getElementById('loginSection').classList.contains('active') ? 'loginStatus' : 'registerStatus';
-            showStatus(statusId, 'Connecting to Google...', 'info');
-            
-            try {
-                const result = await signInWithPopup(auth, googleProvider);
-                const user = result.user;
-                
-                // Check if user exists in Firestore
-                const userDoc = await getDoc(doc(db, "users", user.uid));
-                
-                if (!userDoc.exists()) {
-                    // Create new profile for first-time Google user
-                    await setDoc(doc(db, "users", user.uid), {
-                        uid: user.uid,
-                        name: user.displayName,
-                        email: user.email,
-                        username: user.email.split('@')[0], // Default username
-                        photoURL: user.photoURL,
-                        createdAt: new Date().toISOString()
-                    });
-                }
-                
-                showStatus(statusId, 'Google Login successful!', 'success');
-                setTimeout(() => toggleModal(), 1000);
-            } catch (error) {
-                console.error("Google Login error:", error);
-                showStatus(statusId, error.message, 'error');
-            }
-        };
-
-        window.handleLogout = async () => {
-            try {
-                await signOut(auth);
-            } catch (error) {
-                console.error("Logout error:", error);
-            }
-        };
-
-        function showHero() {
-            document.getElementById('heroSection').style.display = 'flex';
-            document.getElementById('marketplaceSection').classList.remove('active');
-            document.getElementById('navAuthBtn').style.display = 'block';
-            document.getElementById('navUserInfo').style.display = 'none';
-        }
-
-        function showMarketplace() {
-            document.getElementById('heroSection').style.display = 'none';
-            document.getElementById('marketplaceSection').classList.add('active');
-            document.getElementById('navAuthBtn').style.display = 'none';
-            document.getElementById('navUserInfo').style.display = 'flex';
-            document.getElementById('userGreeting').textContent = `Welcome, ${currentUserData.name || currentUserData.username}!`;
-            renderMarketplace();
-        }
-
-        function renderMarketplace() {
-            const grid = document.getElementById('marketplaceGrid');
-            const searchTerm = (document.getElementById('searchInput').value || "").toLowerCase();
-            
-            let filtered = marketplaceItems.filter(item => {
-                const matchesCategory = currentCategory === 'all' || item.category === currentCategory;
-                const matchesSearch = item.title.toLowerCase().includes(searchTerm) || 
-                                     item.description.toLowerCase().includes(searchTerm);
-                return matchesCategory && matchesSearch;
-            });
-
-            grid.innerHTML = filtered.map(item => `
-                <div class="item-card">
-                    <div class="item-image">${item.emoji}</div>
-                    <div class="item-content">
-                        <span class="item-category">${item.category}</span>
-                        <h3 class="item-title">${item.title}</h3>
-                        <p class="item-description">${item.description}</p>
-                        <div class="item-footer">
-                            <span class="item-price">${item.price}</span>
-                            <button class="item-btn" onclick="alert('Added to cart: ${item.title}')">Add to Cart</button>
+                        <div class="input-wrap">
+                            <span class="icon">#</span>
+                            <input type="number" id="r-age" placeholder="25" min="13" max="120">
                         </div>
                     </div>
                 </div>
-            `).join('');
-        }
 
-        window.filterByCategory = (category) => {
-            currentCategory = category;
-            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-            renderMarketplace();
-        };
+                <div class="field">
+                    <label>Phone Number <span style="color:var(--text-gray);font-weight:400;text-transform:none;">(optional)</span></label>
+                    <div class="input-wrap">
+                        <span class="icon">📞</span>
+                        <input type="tel" id="r-phone" placeholder="+91 9999999999" autocomplete="tel">
+                    </div>
+                </div>
 
-        document.getElementById('searchInput')?.addEventListener('input', renderMarketplace);
+                <div class="field">
+                    <label>Company / Organisation <span style="color:var(--text-gray);font-weight:400;text-transform:none;">(optional)</span></label>
+                    <div class="input-wrap">
+                        <span class="icon">🏢</span>
+                        <input type="text" id="r-company" placeholder="NaVi Corp">
+                    </div>
+                </div>
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('authModal');
-            if (event.target == modal) toggleModal();
-        };
-    </script>
-    
-    <!-- Chatbase Script -->
-    <script>
-    (function(){
-        if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-            window.chatbase = (...arguments) => {
-                if(!window.chatbase.q){ window.chatbase.q = []; }
-                window.chatbase.q.push(arguments);
-            };
-            window.chatbase = new Proxy(window.chatbase,{
-                get(target, prop){
-                    if(prop === "q"){ return target.q; }
-                    return (...args) => target(prop, ...args);
-                }
+                <div class="agree-row">
+                    <input type="checkbox" id="r-terms">
+                    <label for="r-terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                </div>
+
+                <button class="submit-btn" id="reg-btn" onclick="handleRegister()" style="margin-top:16px;">Create Account</button>
+            </div>
+
+            <!-- Step 3: Success -->
+            <div id="reg-step3" style="display:none;" class="success-state">
+                <div class="success-icon">✓</div>
+                <h3>Account Created!</h3>
+                <p style="margin-bottom:24px;">Welcome to NaVi Global. You're now signed in and ready to explore the marketplace.</p>
+                <button class="submit-btn" onclick="goToApp()">Go to Marketplace →</button>
+            </div>
+
+        </div>
+        <!-- /register -->
+
+    </div>
+    <!-- /card -->
+
+</div>
+<!-- /page-wrap -->
+
+<!-- Firebase v10 -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDkdrdBx3nZl0X1h156PSB3PNIVMGPxKf0",
+    authDomain: "navi-global.firebaseapp.com",
+    projectId: "navi-global",
+    storageBucket: "navi-global.firebasestorage.app",
+    messagingSenderId: "382402294470",
+    appId: "1:382402294470:web:cbf4c578b61aba83651dc7",
+    measurementId: "G-XKVMT4G634"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const gProvider = new GoogleAuthProvider();
+
+// Redirect if already logged in
+onAuthStateChanged(auth, user => {
+    if (user) window.location.href = 'index.html';
+});
+
+/* ---- helpers ---- */
+function toast(id, msg, type) {
+    const el = document.getElementById(id + '-toast');
+    const icon = document.getElementById(id + '-icon');
+    const txt = document.getElementById(id + '-msg');
+    const icons = { info:'ℹ', error:'✕', success:'✓' };
+    el.className = 'toast show ' + type;
+    icon.textContent = icons[type] || 'ℹ';
+    txt.textContent = msg;
+    if (type !== 'info') setTimeout(() => el.classList.remove('show'), 5000);
+}
+
+function loading(btnId, state, label='') {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+    btn.disabled = state;
+    if (state) {
+        btn.innerHTML = '<div class="spinner"></div> ' + (label || 'Please wait…');
+    } else {
+        btn.textContent = label;
+    }
+}
+
+function friendlyError(code) {
+    const map = {
+        'auth/invalid-email': 'That email address looks invalid.',
+        'auth/user-not-found': 'No account found with this email.',
+        'auth/wrong-password': 'Incorrect password. Try again.',
+        'auth/email-already-in-use': 'This email is already registered.',
+        'auth/weak-password': 'Password must be at least 6 characters.',
+        'auth/too-many-requests': 'Too many attempts. Please wait a moment.',
+        'auth/popup-closed-by-user': 'Google sign-in was cancelled.',
+        'auth/network-request-failed': 'Network error. Check your connection.',
+    };
+    return map[code] || 'Something went wrong. Please try again.';
+}
+
+/* ---- Login ---- */
+window.handleLogin = async () => {
+    const email = document.getElementById('l-email').value.trim();
+    const pw = document.getElementById('l-password').value;
+    if (!email || !pw) { toast('login','Please fill in all fields','error'); return; }
+    loading('login-btn', true, 'Signing in…');
+    toast('login', 'Signing you in…', 'info');
+    try {
+        await signInWithEmailAndPassword(auth, email, pw);
+        toast('login', 'Success! Redirecting…', 'success');
+        setTimeout(() => window.location.href = 'index.html', 900);
+    } catch(e) {
+        toast('login', friendlyError(e.code), 'error');
+        loading('login-btn', false);
+        document.getElementById('login-btn').textContent = 'Sign In';
+    }
+};
+
+/* ---- Forgot ---- */
+window.handleForgot = async () => {
+    const email = document.getElementById('forgot-email').value.trim();
+    if (!email) { toast('forgot','Enter your email address','error'); return; }
+    loading('forgot-btn', true, 'Sending…');
+    try {
+        await sendPasswordResetEmail(auth, email);
+        toast('forgot', 'Reset link sent! Check your inbox.', 'success');
+        loading('forgot-btn', false);
+        document.getElementById('forgot-btn').textContent = 'Send Reset Link';
+    } catch(e) {
+        toast('forgot', friendlyError(e.code), 'error');
+        loading('forgot-btn', false);
+        document.getElementById('forgot-btn').textContent = 'Send Reset Link';
+    }
+};
+
+/* ---- Google ---- */
+window.handleGoogle = async () => {
+    try {
+        const res = await signInWithPopup(auth, gProvider);
+        const user = res.user;
+        const ref = doc(db, 'users', user.uid);
+        const snap = await getDoc(ref);
+        if (!snap.exists()) {
+            await setDoc(ref, {
+                uid: user.uid,
+                name: user.displayName,
+                email: user.email,
+                username: user.email.split('@')[0],
+                photoURL: user.photoURL,
+                createdAt: new Date().toISOString()
             });
         }
-        const onLoad = function(){
-            const script = document.createElement("script");
-            script.src = "https://www.chatbase.co/embed.min.js";
-            script.id = "A0IVg-dTMMASuqCxupRtI";
-            script.domain = "www.chatbase.co";
-            document.body.appendChild(script);
-        };
-        if(document.readyState === "complete"){ onLoad(); } else { window.addEventListener("load", onLoad); }
-    })();
-    </script>
+        window.location.href = 'index.html';
+    } catch(e) {
+        const tid = document.getElementById('section-login').classList.contains('active') ? 'login' : 'reg';
+        toast(tid, friendlyError(e.code), 'error');
+    }
+};
+
+/* ---- Register step 2 submit ---- */
+window.handleRegister = async () => {
+    const email = document.getElementById('r-email').value.trim();
+    const pw = document.getElementById('r-pw').value;
+    const name = document.getElementById('r-name').value.trim();
+    const age = document.getElementById('r-age').value;
+    const phone = document.getElementById('r-phone').value.trim();
+    const company = document.getElementById('r-company').value.trim();
+    const username = document.getElementById('r-username').value.trim();
+    const agreed = document.getElementById('r-terms').checked;
+
+    if (!name) { toast('reg','Please enter your full name','error'); return; }
+    if (!agreed) { toast('reg','Please agree to the Terms of Service','error'); return; }
+
+    loading('reg-btn', true, 'Creating account…');
+    toast('reg', 'Setting up your account…', 'info');
+
+    try {
+        const cred = await createUserWithEmailAndPassword(auth, email, pw);
+        await setDoc(doc(db, 'users', cred.user.uid), {
+            uid: cred.user.uid,
+            name, age: age || null, phone: phone || null,
+            company: company || null,
+            email, username,
+            createdAt: new Date().toISOString()
+        });
+
+        // Show step 3 success
+        document.getElementById('reg-step2').style.display = 'none';
+        document.getElementById('reg-step3').style.display = 'block';
+        setStep(3);
+    } catch(e) {
+        toast('reg', friendlyError(e.code), 'error');
+        loading('reg-btn', false);
+        document.getElementById('reg-btn').textContent = 'Create Account';
+    }
+};
+
+window.goToApp = () => { window.location.href = 'index.html'; };
+</script>
+
+<script>
+/* ---- UI helpers (non-Firebase) ---- */
+
+function switchTab(tab) {
+    document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+    document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+    showSection(tab);
+}
+
+function showSection(id) {
+    ['login','register','forgot'].forEach(s => {
+        const el = document.getElementById('section-' + s);
+        if (el) el.classList.toggle('active', s === id);
+    });
+}
+window.switchTab = switchTab;
+window.showSection = showSection;
+window.showForgot = () => showSection('forgot');
+
+function togglePw(id, btn) {
+    const inp = document.getElementById(id);
+    if (!inp) return;
+    const show = inp.type === 'password';
+    inp.type = show ? 'text' : 'password';
+    btn.textContent = show ? '🙈' : '👁';
+}
+window.togglePw = togglePw;
+
+function checkStrength(val) {
+    const wrap = document.getElementById('strength-wrap');
+    const bars = [document.getElementById('b1'),document.getElementById('b2'),document.getElementById('b3'),document.getElementById('b4')];
+    const label = document.getElementById('strength-label');
+    if (!val) { wrap.style.display='none'; return; }
+    wrap.style.display = 'block';
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+    const cls = score <= 1 ? 'weak' : score <= 2 ? 'fair' : 'strong';
+    const txt = ['','Weak','Fair','Strong','Very strong'][score] || '';
+    bars.forEach((b,i) => {
+        b.className = 'bar';
+        if (i < score) b.classList.add('filled', cls);
+    });
+    label.textContent = txt;
+    label.style.color = cls === 'weak' ? 'var(--error)' : cls === 'fair' ? 'var(--warn)' : 'var(--success)';
+}
+
+function matchCheck() {
+    const pw = document.getElementById('r-pw').value;
+    const conf = document.getElementById('r-confirm').value;
+    const hint = document.getElementById('match-hint');
+    if (!conf) { hint.textContent=''; return; }
+    if (pw === conf) {
+        hint.textContent = '✓ Passwords match';
+        hint.className = 'field-hint';
+        hint.style.color = 'var(--success)';
+    } else {
+        hint.textContent = '✕ Passwords do not match';
+        hint.className = 'field-hint err';
+        hint.style.color = '';
+    }
+}
+
+function checkUsername(inp) {
+    const hint = document.getElementById('username-hint');
+    const val = inp.value.trim();
+    if (!val) { hint.textContent=''; return; }
+    const ok = /^[a-z0-9_]{3,20}$/i.test(val);
+    hint.textContent = ok ? '✓ Looks good!' : 'Only letters, numbers, underscores. 3–20 chars.';
+    hint.style.color = ok ? 'var(--success)' : 'var(--error)';
+}
+window.checkUsername = checkUsername;
+
+function setStep(n) {
+    for (let i = 1; i <= 3; i++) {
+        const dot = document.getElementById('s' + i);
+        dot.classList.remove('active','done');
+        if (i < n) dot.classList.add('done');
+        else if (i === n) dot.classList.add('active');
+    }
+    for (let i = 1; i <= 2; i++) {
+        const line = document.getElementById('l' + i);
+        line.classList.toggle('done', i < n);
+    }
+}
+
+function goStep2() {
+    const email = document.getElementById('r-email').value.trim();
+    const username = document.getElementById('r-username').value.trim();
+    const pw = document.getElementById('r-pw').value;
+    const conf = document.getElementById('r-confirm').value;
+
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+        toast('reg', 'Please enter a valid email address.', 'error'); return;
+    }
+    if (!username || username.length < 3) {
+        toast('reg', 'Choose a username (3+ characters).', 'error'); return;
+    }
+    if (!pw || pw.length < 6) {
+        toast('reg', 'Password must be at least 6 characters.', 'error'); return;
+    }
+    if (pw !== conf) {
+        toast('reg', 'Passwords do not match.', 'error'); return;
+    }
+
+    document.getElementById('reg-step1').style.display = 'none';
+    document.getElementById('reg-step2').style.display = 'block';
+    setStep(2);
+}
+window.goStep2 = goStep2;
+
+function goBack1() {
+    document.getElementById('reg-step2').style.display = 'none';
+    document.getElementById('reg-step1').style.display = 'block';
+    setStep(1);
+}
+window.goBack1 = goBack1;
+
+// Enter key support
+document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    const active = document.querySelector('.section.active');
+    if (!active) return;
+    if (active.id === 'section-login') window.handleLogin?.();
+    if (active.id === 'section-forgot') window.handleForgot?.();
+});
+</script>
 </body>
 </html>
