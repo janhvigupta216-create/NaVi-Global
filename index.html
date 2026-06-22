@@ -416,894 +416,51 @@
             background: var(--primary-dark);
         }
 
-        /* Auth Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+        /* Features Section */
+        .features {
+            padding: 100px 5%;
+            background: rgba(8, 17, 32, 0.8);
         }
 
-        .modal.active {
-            display: flex;
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
-        .modal-content {
+        .section-header h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
             background: var(--bg-card);
-            width: 100%;
-            max-width: 450px;
-            border-radius: 24px;
-            position: relative;
             padding: 40px;
-            border: 1px solid rgba(14, 165, 233, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 28px;
-            color: var(--text-gray);
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-btn:hover {
-            color: var(--primary);
-        }
-
-        .tab-group {
-            display: flex;
-            margin-bottom: 30px;
-            background: rgba(8, 17, 32, 0.5);
-            padding: 5px;
-            border-radius: 12px;
-        }
-
-        .tab {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 8px;
-            font-weight: 600;
-            color: var(--text-gray);
-            transition: all 0.3s;
-        }
-
-        .tab.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .form-section {<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NaVi Global | AI-Powered Business Solutions</title>
-    <style>
-        :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0284c7;
-            --bg-dark: #081120;
-            --bg-card: #112240;
-            --text-white: #ffffff;
-            --text-gray: #94a3b8;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: rgba(13, 27, 42, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(14, 165, 233, 0.1);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
-        }
-
-        .logo h2 {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text-white);
-            letter-spacing: -0.5px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        .nav-btn {
-            background: var(--primary);
-            padding: 8px 20px;
             border-radius: 20px;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .nav-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .user-greeting {
-            font-size: 14px;
-            color: var(--text-gray);
-        }
-
-        .logout-btn {
-            background: #ef4444;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            color: white;
-            transition: all 0.3s;
-        }
-
-        .logout-btn:hover {
-            background: #dc2626;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: var(--bg-dark);
-        }
-
-        .video-background iframe {
-            width: 100vw;
-            height: 56.25vw;
-            min-height: 100vh;
-            min-width: 177.77vh;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            opacity: 0.5;
-        }
-
-        .video-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #081120 0%, #0d1b2a 100%);
-            z-index: -2;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(8, 17, 32, 0.4) 0%, rgba(8, 17, 32, 0.8) 100%);
-            z-index: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 900px;
-            padding: 0 20px;
-        }
-
-        .hero-logo-large {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 4px solid var(--primary);
-            margin: 0 auto 30px;
-            box-shadow: 0 0 30px rgba(14, 165, 233, 0.4);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 20px rgba(14, 165, 233, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(14, 165, 233, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 0 20px rgba(14, 165, 233, 0.4); }
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 8vw, 72px);
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.1;
-            letter-spacing: -2px;
-        }
-
-        .hero p {
-            font-size: clamp(16px, 3vw, 22px);
-            color: var(--text-gray);
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .main-btn {
-            background: var(--primary);
-            color: white;
-            padding: 16px 40px;
-            border-radius: 35px;
-            font-size: 18px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .main-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
-        }
-
-        /* Marketplace Section */
-        .marketplace {
-            display: none;
-            padding: 100px 5%;
-            min-height: 100vh;
-            padding-top: 120px;
-        }
-
-        .marketplace.active {
-            display: block;
-        }
-
-        .marketplace-header {
-            margin-bottom: 50px;
-        }
-
-        .marketplace-header h1 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .marketplace-header p {
-            color: var(--text-gray);
-            font-size: 18px;
-        }
-
-        .search-bar {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .search-input {
-            flex: 1;
-            min-width: 250px;
-            padding: 12px 20px;
-            background: rgba(8, 17, 32, 0.6);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            border-radius: 12px;
-            color: white;
-            font-size: 15px;
-        }
-
-        .search-input::placeholder {
-            color: var(--text-gray);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
-        }
-
-        .category-filters {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .category-btn {
-            padding: 8px 18px;
-            background: rgba(8, 17, 32, 0.6);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            border-radius: 20px;
-            color: var(--text-gray);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-
-        .category-btn:hover,
-        .category-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: white;
-        }
-
-        .marketplace-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .item-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
             border: 1px solid rgba(14, 165, 233, 0.1);
             transition: all 0.3s;
-            cursor: pointer;
         }
 
-        .item-card:hover {
-            transform: translateY(-8px);
+        .feature-card:hover {
             border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
+            transform: translateY(-5px);
         }
 
-        .item-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-        }
-
-        .item-content {
-            padding: 20px;
-        }
-
-        .item-category {
-            display: inline-block;
-            background: rgba(14, 165, 233, 0.2);
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .item-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .item-description {
-            color: var(--text-gray);
-            font-size: 14px;
+        .feature-card h3 {
+            font-size: 24px;
             margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .item-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .item-price {
-            font-size: 20px;
-            font-weight: 700;
             color: var(--primary);
-        }<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NaVi Global | AI-Powered Business Solutions</title>
-    <style>
-        :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0284c7;
-            --bg-dark: #081120;
-            --bg-card: #112240;
-            --text-white: #ffffff;
-            --text-gray: #94a3b8;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: rgba(13, 27, 42, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(14, 165, 233, 0.1);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
-        }
-
-        .logo h2 {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text-white);
-            letter-spacing: -0.5px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        .nav-btn {
-            background: var(--primary);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .nav-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .user-greeting {
-            font-size: 14px;
-            color: var(--text-gray);
-        }
-
-        .logout-btn {
-            background: #ef4444;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            color: white;
-            transition: all 0.3s;
-        }
-
-        .logout-btn:hover {
-            background: #dc2626;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: var(--bg-dark);
-        }
-
-        .video-background iframe {
-            width: 100vw;
-            height: 56.25vw;
-            min-height: 100vh;
-            min-width: 177.77vh;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            opacity: 0.5;
-        }
-
-        .video-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #081120 0%, #0d1b2a 100%);
-            z-index: -2;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(8, 17, 32, 0.4) 0%, rgba(8, 17, 32, 0.8) 100%);
-            z-index: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 900px;
-            padding: 0 20px;
-        }
-
-        .hero-logo-large {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 4px solid var(--primary);
-            margin: 0 auto 30px;
-            box-shadow: 0 0 30px rgba(14, 165, 233, 0.4);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 20px rgba(14, 165, 233, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(14, 165, 233, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 0 20px rgba(14, 165, 233, 0.4); }
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 8vw, 72px);
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.1;
-            letter-spacing: -2px;
-        }
-
-        .hero p {
-            font-size: clamp(16px, 3vw, 22px);
-            color: var(--text-gray);
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .main-btn {
-            background: var(--primary);
-            color: white;
-            padding: 16px 40px;
-            border-radius: 35px;
-            font-size: 18px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .main-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
-        }
-
-        /* Marketplace Section */
-        .marketplace {
-            display: none;
-            padding: 100px 5%;
-            min-height: 100vh;
-            padding-top: 120px;
-        }
-
-        .marketplace.active {
-            display: block;
-        }
-
-        .marketplace-header {
-            margin-bottom: 50px;
-        }
-
-        .marketplace-header h1 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .marketplace-header p {
-            color: var(--text-gray);
-            font-size: 18px;
-        }
-
-        .search-bar {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .search-input {
-            flex: 1;
-            min-width: 250px;
-            padding: 12px 20px;
-            background: rgba(8, 17, 32, 0.6);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            border-radius: 12px;
-            color: white;
-            font-size: 15px;
-        }
-
-        .search-input::placeholder {
-            color: var(--text-gray);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
-        }
-
-        .category-filters {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .category-btn {
-            padding: 8px 18px;
-            background: rgba(8, 17, 32, 0.6);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            border-radius: 20px;
-            color: var(--text-gray);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-
-        .category-btn:hover,
-        .category-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: white;
-        }
-
-        .marketplace-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .item-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(14, 165, 233, 0.1);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .item-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
-        }
-
-        .item-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-        }
-
-        .item-content {
-            padding: 20px;
-        }
-
-        .item-category {
-            display: inline-block;
-            background: rgba(14, 165, 233, 0.2);
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .item-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .item-description {
-            color: var(--text-gray);
-            font-size: 14px;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .item-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .item-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .item-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .item-btn:hover {
-            background: var(--primary-dark);
         }
 
         /* Auth Modal */
@@ -1385,37 +542,23 @@
             display: block;
         }
 
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        @media (max-width: 480px) {
-            .input-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .input-group {
             margin-bottom: 20px;
-            width: 100%;
         }
 
         .input-group label {
             display: block;
             margin-bottom: 8px;
             font-size: 14px;
-            font-weight: 600;
-            color: var(--primary);
+            font-weight: 500;
+            color: var(--text-gray);
         }
 
         .input-group input {
             width: 100%;
             padding: 12px 16px;
             background: rgba(8, 17, 32, 0.6);
-            border: 1px solid rgba(14, 165, 233, 0.3);
+            border: 1px solid rgba(14, 165, 233, 0.2);
             border-radius: 10px;
             color: white;
             font-size: 15px;
@@ -1425,7 +568,14 @@
         .input-group input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
         }
 
         .submit-btn {
@@ -1439,6 +589,7 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
+            margin-top: 10px;
         }
 
         .submit-btn:hover {
@@ -1446,80 +597,68 @@
             transform: translateY(-2px);
         }
 
-        .status-message {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 14px;
+        .divider {
+            display: flex;
+            align-items: center;
             text-align: center;
+            margin: 25px 0;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        .divider:not(:empty)::before { margin-right: 15px; }
+        .divider:not(:empty)::after { margin-left: 15px; }
+
+        .google-btn {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            color: #1f2937;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .google-btn:hover {
+            background: #f3f4f6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .google-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .status-message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
             display: none;
         }
 
-        .status-message.success {
-            background: rgba(16, 185, 129, 0.2);
-            color: #10b981;
-            display: block;
-        }
+        .status-message.info { background: rgba(14, 165, 233, 0.1); color: var(--primary); }
+        .status-message.error { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+        .status-message.success { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
 
-        .status-message.error {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-            display: block;
-        }
-
-        .status-message.info {
-            background: rgba(59, 130, 246, 0.2);
-            color: #3b82f6;
-            display: block;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 8%;
-            background: var(--bg-dark);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 40px;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 24px;
-            border: 1px solid rgba(14, 165, 233, 0.1);
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        /* Footer */
         footer {
-            padding: 60px 8% 40px;
-            background: #050a14;
+            padding: 80px 5% 40px;
+            background: #060d18;
             text-align: center;
             border-top: 1px solid rgba(14, 165, 233, 0.1);
         }
@@ -1528,8 +667,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
         .footer-logo img {
@@ -1557,48 +696,37 @@
         }
 
         .copyright {
-            color: #4b5563;
-            font-size: 14px;
+            color: #475569;
+            font-size: 13px;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            nav ul {
-                display: none;
-            }
-            .hero h1 {
-                font-size: 48px;
-            }
-            .marketplace-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
+            nav ul { display: none; }
+            .hero h1 { font-size: 48px; }
+            .input-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-
     <nav>
         <a href="#" class="logo">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global Logo">
             <h2>NaVi Global</h2>
         </a>
-        <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li id="navAuthBtn"><a href="javascript:void(0)" class="nav-btn" onclick="toggleModal('login')">Sign In</a></li>
-            <li id="navUserInfo" class="user-info" style="display: none;">
-                <span class="user-greeting" id="userGreeting"></span>
-                <button class="logout-btn" onclick="handleLogout()">Logout</button>
-            </li>
-        </ul>
+        <div class="user-info" id="navUserInfo" style="display: none;">
+            <span class="user-greeting" id="userGreeting">Welcome!</span>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+        <div id="navAuthBtn">
+            <button class="nav-btn" onclick="toggleModal('login')">Sign In</button>
+        </div>
     </nav>
 
     <section class="hero" id="heroSection">
         <div class="video-background">
-            <iframe src="https://www.youtube.com/embed/lfzcPdj9ynE?autoplay=1&mute=1&controls=0&loop=1&playlist=lfzcPdj9ynE&showinfo=0&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <div class="video-fallback"></div>
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0&loop=1&playlist=dQw4w9WgXcQ" frameborder="0"></iframe>
         </div>
+        <div class="video-fallback"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global Logo" class="hero-logo-large">
@@ -1673,6 +801,13 @@
                     <input type="password" id="loginPassword" placeholder="••••••••">
                 </div>
                 <button class="submit-btn" onclick="handleLogin()">Sign In</button>
+                
+                <div class="divider">or</div>
+                
+                <button class="google-btn" onclick="handleGoogleLogin()">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                    Continue with Google
+                </button>
             </div>
 
             <!-- Register Form -->
@@ -1713,6 +848,13 @@
                     </div>
                 </div>
                 <button class="submit-btn" onclick="handleRegister()">Create Account</button>
+                
+                <div class="divider">or</div>
+                
+                <button class="google-btn" onclick="handleGoogleLogin()">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                    Sign up with Google
+                </button>
             </div>
         </div>
     </div>
@@ -1738,17 +880,19 @@
             createUserWithEmailAndPassword, 
             signInWithEmailAndPassword, 
             signOut, 
-            onAuthStateChanged 
+            onAuthStateChanged,
+            GoogleAuthProvider,
+            signInWithPopup
         } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { 
             getFirestore, 
             doc, 
             setDoc, 
-            getDoc 
+            getDoc,
+            serverTimestamp
         } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // TODO: REPLACE THIS WITH YOUR FIREBASE CONFIG
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        // Your Firebase Config (Preserved)
         const firebaseConfig = {
             apiKey: "AIzaSyDkdrdBx3nZl0X1h156PSB3PNIVMGPxKf0",
             authDomain: "navi-global.firebaseapp.com",
@@ -1757,15 +901,15 @@
             messagingSenderId: "382402294470",
             appId: "1:382402294470:web:cbf4c578b61aba83651dc7",
             measurementId: "G-XKVMT4G634"
-            
         };
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider();
 
-        // Marketplace Items Database (Keep static or move to Firestore)
+        // Marketplace Items
         const marketplaceItems = [
             { id: 1, title: "AI Content Generator", description: "Generate high-quality content in seconds using advanced AI models.", category: "AI", price: "$99/mo", emoji: "✨" },
             { id: 2, title: "Advanced Analytics Dashboard", description: "Real-time insights with predictive analytics for your business.", category: "Analytics", price: "$149/mo", emoji: "📊" },
@@ -1783,18 +927,26 @@
         // Listen for Auth State Changes
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                // User is signed in, fetch profile from Firestore
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 if (userDoc.exists()) {
                     currentUserData = userDoc.data();
                     showMarketplace();
                 } else {
-                    // Handle case where auth exists but doc doesn't
-                    console.error("User profile not found in Firestore");
-                    handleLogout();
+                    // Case for Google login where doc might not exist yet
+                    // But we handle it in handleGoogleLogin. If somehow missed:
+                    console.log("Creating default profile for existing user...");
+                    const defaultData = {
+                        uid: user.uid,
+                        name: user.displayName || "Google User",
+                        email: user.email,
+                        username: user.email.split('@')[0],
+                        createdAt: new Date().toISOString()
+                    };
+                    await setDoc(doc(db, "users", user.uid), defaultData);
+                    currentUserData = defaultData;
+                    showMarketplace();
                 }
             } else {
-                // User is signed out
                 currentUserData = null;
                 showHero();
             }
@@ -1878,11 +1030,9 @@
             showStatus('registerStatus', 'Creating account...', 'info');
 
             try {
-                // 1. Create Auth User
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
 
-                // 2. Save Profile to Firestore
                 await setDoc(doc(db, "users", user.uid), {
                     uid: user.uid,
                     name: name,
@@ -1901,705 +1051,34 @@
             }
         };
 
-        window.handleLogout = async () => {
-            try {
-                await signOut(auth);
-            } catch (error) {
-                console.error("Logout error:", error);
-            }
-        };
-
-        function showHero() {
-            document.getElementById('heroSection').style.display = 'flex';
-            document.getElementById('marketplaceSection').classList.remove('active');
-            document.getElementById('navAuthBtn').style.display = 'block';
-            document.getElementById('navUserInfo').style.display = 'none';
-        }
-
-        function showMarketplace() {
-            document.getElementById('heroSection').style.display = 'none';
-            document.getElementById('marketplaceSection').classList.add('active');
-            document.getElementById('navAuthBtn').style.display = 'none';
-            document.getElementById('navUserInfo').style.display = 'flex';
-            document.getElementById('userGreeting').textContent = `Welcome, ${currentUserData.name || currentUserData.username}!`;
-            renderMarketplace();
-        }
-
-        function renderMarketplace() {
-            const grid = document.getElementById('marketplaceGrid');
-            const searchTerm = (document.getElementById('searchInput').value || "").toLowerCase();
+        window.handleGoogleLogin = async () => {
+            const statusId = document.getElementById('loginSection').classList.contains('active') ? 'loginStatus' : 'registerStatus';
+            showStatus(statusId, 'Connecting to Google...', 'info');
             
-            let filtered = marketplaceItems.filter(item => {
-                const matchesCategory = currentCategory === 'all' || item.category === currentCategory;
-                const matchesSearch = item.title.toLowerCase().includes(searchTerm) || 
-                                     item.description.toLowerCase().includes(searchTerm);
-                return matchesCategory && matchesSearch;
-            });
-
-            grid.innerHTML = filtered.map(item => `
-                <div class="item-card">
-                    <div class="item-image">${item.emoji}</div>
-                    <div class="item-content">
-                        <span class="item-category">${item.category}</span>
-                        <h3 class="item-title">${item.title}</h3>
-                        <p class="item-description">${item.description}</p>
-                        <div class="item-footer">
-                            <span class="item-price">${item.price}</span>
-                            <button class="item-btn" onclick="alert('Added to cart: ${item.title}')">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        window.filterByCategory = (category) => {
-            currentCategory = category;
-            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-            // Note: In modular JS, event is not global, but we can find the target or just re-render
-            renderMarketplace();
-        };
-
-        document.getElementById('searchInput')?.addEventListener('input', renderMarketplace);
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('authModal');
-            if (event.target == modal) toggleModal();
-        };
-    </script>
-    
-    <!-- Chatbase Script (Keep as is) -->
-    <script>
-    (function(){
-        if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-            window.chatbase = (...arguments) => {
-                if(!window.chatbase.q){ window.chatbase.q = []; }
-                window.chatbase.q.push(arguments);
-            };
-            window.chatbase = new Proxy(window.chatbase,{
-                get(target, prop){
-                    if(prop === "q"){ return target.q; }
-                    return (...args) => target(prop, ...args);
-                }
-            });
-        }
-        const onLoad = function(){
-            const script = document.createElement("script");
-            script.src = "https://www.chatbase.co/embed.min.js";
-            script.id = "A0IVg-dTMMASuqCxupRtI";
-            script.domain = "www.chatbase.co";
-            document.body.appendChild(script);
-        };
-        if(document.readyState === "complete"){ onLoad(); } else { window.addEventListener("load", onLoad); }
-    })();
-    </script>
-</body>
-</html>
-
-
-        .item-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .item-btn:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Auth Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--bg-card);
-            width: 100%;
-            max-width: 450px;
-            border-radius: 24px;
-            position: relative;
-            padding: 40px;
-            border: 1px solid rgba(14, 165, 233, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 28px;
-            color: var(--text-gray);
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-btn:hover {
-            color: var(--primary);
-        }
-
-        .tab-group {
-            display: flex;
-            margin-bottom: 30px;
-            background: rgba(8, 17, 32, 0.5);
-            padding: 5px;
-            border-radius: 12px;
-        }
-
-        .tab {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 8px;
-            font-weight: 600;
-            color: var(--text-gray);
-            transition: all 0.3s;
-        }
-
-        .tab.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .form-section {
-            display: none;
-        }
-
-        .form-section.active {
-            display: block;
-        }
-
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        @media (max-width: 480px) {
-            .input-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(8, 17, 32, 0.6);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            border-radius: 10px;
-            color: white;
-            font-size: 15px;
-            transition: all 0.3s;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .status-message {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 14px;
-            text-align: center;
-            display: none;
-        }
-
-        .status-message.success {
-            background: rgba(16, 185, 129, 0.2);
-            color: #10b981;
-            display: block;
-        }
-
-        .status-message.error {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-            display: block;
-        }
-
-        .status-message.info {
-            background: rgba(59, 130, 246, 0.2);
-            color: #3b82f6;
-            display: block;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 8%;
-            background: var(--bg-dark);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 40px;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 24px;
-            border: 1px solid rgba(14, 165, 233, 0.1);
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 8% 40px;
-            background: #050a14;
-            text-align: center;
-            border-top: 1px solid rgba(14, 165, 233, 0.1);
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .footer-logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-links a {
-            color: var(--text-gray);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .copyright {
-            color: #4b5563;
-            font-size: 14px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-            }
-            .hero h1 {
-                font-size: 48px;
-            }
-            .marketplace-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <a href="#" class="logo">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global">
-            <h2>NaVi Global</h2>
-        </a>
-        <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li id="navAuthBtn"><a href="javascript:void(0)" class="nav-btn" onclick="toggleModal('login')">Sign In</a></li>
-            <li id="navUserInfo" class="user-info" style="display: none;">
-                <span class="user-greeting" id="userGreeting"></span>
-                <button class="logout-btn" onclick="handleLogout()">Logout</button>
-            </li>
-        </ul>
-    </nav>
-
-    <section class="hero" id="heroSection">
-        <div class="video-background">
-            <iframe src="https://www.youtube.com/embed/lfzcPdj9ynE?autoplay=1&mute=1&controls=0&loop=1&playlist=lfzcPdj9ynE&showinfo=0&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <div class="video-fallback"></div>
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global Logo" class="hero-logo-large">
-            <h1>Scale Your Vision Globally</h1>
-            <p>Empowering modern enterprises with AI-driven connectivity, growth strategies, and seamless success pathways.</p>
-            <div class="cta-group">
-                <button class="main-btn" onclick="toggleModal('register')">Get Started Free</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Marketplace Section -->
-    <section class="marketplace" id="marketplaceSection">
-        <div class="marketplace-header">
-            <h1>Welcome to NaVi Global Marketplace</h1>
-            <p>Explore our premium AI-powered services and solutions</p>
-        </div>
-
-        <div class="search-bar">
-            <input type="text" class="search-input" id="searchInput" placeholder="Search services...">
-            <div class="category-filters">
-                <button class="category-btn active" onclick="filterByCategory('all')">All</button>
-                <button class="category-btn" onclick="filterByCategory('AI')">AI Solutions</button>
-                <button class="category-btn" onclick="filterByCategory('Analytics')">Analytics</button>
-                <button class="category-btn" onclick="filterByCategory('Security')">Security</button>
-                <button class="category-btn" onclick="filterByCategory('Integration')">Integration</button>
-            </div>
-        </div>
-
-        <div class="marketplace-grid" id="marketplaceGrid"></div>
-    </section>
-
-    <section id="features" class="features">
-        <div class="section-header">
-            <h2>Our Core Capabilities</h2>
-            <p>Everything you need to grow your business in the digital age.</p>
-        </div>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>AI Intelligence</h3>
-                <p>Leverage machine learning to predict market trends and automate customer interactions with precision.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Global Network</h3>
-                <p>Connect with partners and clients across 150+ countries through our high-speed, secure infrastructure.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Smart Analytics</h3>
-                <p>Real-time data visualization that turns complex business metrics into actionable growth strategies.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Auth Modal -->
-    <div class="modal" id="authModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="toggleModal()">&times;</span>
-            <div class="tab-group">
-                <div class="tab" id="loginTab" onclick="switchTab('login')">Login</div>
-                <div class="tab" id="registerTab" onclick="switchTab('register')">Register</div>
-            </div>
-
-            <!-- Login Form -->
-            <div id="loginSection" class="form-section">
-                <div id="loginStatus" class="status-message"></div>
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input type="email" id="loginEmail" placeholder="your@email.com">
-                </div>
-                <div class="input-group">
-                    <label>Password</label>
-                    <input type="password" id="loginPassword" placeholder="••••••••">
-                </div>
-                <button class="submit-btn" onclick="handleLogin()">Sign In</button>
-            </div>
-
-            <!-- Register Form -->
-            <div id="registerSection" class="form-section">
-                <div id="registerStatus" class="status-message"></div>
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Name</label>
-                        <input type="text" id="regName" placeholder="Full name">
-                    </div>
-                    <div class="input-group">
-                        <label>Age</label>
-                        <input type="number" id="regAge" placeholder="Age">
-                    </div>
-                </div>
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Phone</label>
-                        <input type="tel" id="regPhone" placeholder="+1...">
-                    </div>
-                    <div class="input-group">
-                        <label>Email</label>
-                        <input type="email" id="regEmail" placeholder="email@example.com">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label>Create Username</label>
-                    <input type="text" id="regUsername" placeholder="Unique username">
-                </div>
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Password</label>
-                        <input type="password" id="regPassword" placeholder="••••••••">
-                    </div>
-                    <div class="input-group">
-                        <label>Confirm</label>
-                        <input type="password" id="regConfirm" placeholder="••••••••">
-                    </div>
-                </div>
-                <button class="submit-btn" onclick="handleRegister()">Create Account</button>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-logo">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global">
-            <h2>NaVi Global</h2>
-        </div>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Support</a>
-        </div>
-        <p class="copyright">© 2026 NaVi Global. All rights reserved.</p>
-    </footer>
-
-    <!-- Firebase SDKs (Modular v10) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { 
-            getAuth, 
-            createUserWithEmailAndPassword, 
-            signInWithEmailAndPassword, 
-            signOut, 
-            onAuthStateChanged 
-        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { 
-            getFirestore, 
-            doc, 
-            setDoc, 
-            getDoc 
-        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        // TODO: REPLACE THIS WITH YOUR FIREBASE CONFIG
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // Marketplace Items Database (Keep static or move to Firestore)
-        const marketplaceItems = [
-            { id: 1, title: "AI Content Generator", description: "Generate high-quality content in seconds using advanced AI models.", category: "AI", price: "$99/mo", emoji: "✨" },
-            { id: 2, title: "Advanced Analytics Dashboard", description: "Real-time insights with predictive analytics for your business.", category: "Analytics", price: "$149/mo", emoji: "📊" },
-            { id: 3, title: "Enterprise Security Suite", description: "Comprehensive security solutions with 24/7 monitoring.", category: "Security", price: "$299/mo", emoji: "🔐" },
-            { id: 4, title: "API Integration Hub", description: "Connect your tools seamlessly with 500+ integrations.", category: "Integration", price: "$199/mo", emoji: "🔗" },
-            { id: 5, title: "Machine Learning Toolkit", description: "Build and deploy ML models without coding expertise.", category: "AI", price: "$249/mo", emoji: "🤖" },
-            { id: 6, title: "Data Visualization Pro", description: "Transform raw data into stunning interactive visualizations.", category: "Analytics", price: "$129/mo", emoji: "📈" },
-            { id: 7, title: "Compliance Manager", description: "Ensure regulatory compliance with automated monitoring.", category: "Security", price: "$179/mo", emoji: "✅" },
-            { id: 8, title: "Webhook Manager", description: "Manage and monitor webhooks across all your applications.", category: "Integration", price: "$89/mo", emoji: "⚡" }
-        ];
-
-        let currentUserData = null;
-        let currentCategory = 'all';
-
-        // Listen for Auth State Changes
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                // User is signed in, fetch profile from Firestore
-                const userDoc = await getDoc(doc(db, "users", user.uid));
-                if (userDoc.exists()) {
-                    currentUserData = userDoc.data();
-                    showMarketplace();
-                } else {
-                    // Handle case where auth exists but doc doesn't
-                    console.error("User profile not found in Firestore");
-                    handleLogout();
-                }
-            } else {
-                // User is signed out
-                currentUserData = null;
-                showHero();
-            }
-        });
-
-        // UI Functions
-        window.toggleModal = (type) => {
-            const modal = document.getElementById('authModal');
-            modal.classList.toggle('active');
-            if (type) switchTab(type);
-        };
-
-        window.switchTab = (type) => {
-            const loginTab = document.getElementById('loginTab');
-            const registerTab = document.getElementById('registerTab');
-            const loginSection = document.getElementById('loginSection');
-            const registerSection = document.getElementById('registerSection');
-
-            if (type === 'login') {
-                loginTab.classList.add('active');
-                registerTab.classList.remove('active');
-                loginSection.classList.add('active');
-                registerSection.classList.remove('active');
-            } else {
-                registerTab.classList.add('active');
-                loginTab.classList.remove('active');
-                registerSection.classList.add('active');
-                loginSection.classList.remove('active');
-            }
-        };
-
-        function showStatus(elementId, message, type) {
-            const el = document.getElementById(elementId);
-            el.textContent = message;
-            el.className = 'status-message ' + type;
-            el.style.display = 'block';
-            setTimeout(() => { el.style.display = 'none'; }, 5000);
-        }
-
-        // Firebase Auth Logic
-        window.handleLogin = async () => {
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-
-            if (!email || !password) {
-                showStatus('loginStatus', 'Please fill all fields', 'error');
-                return;
-            }
-
-            showStatus('loginStatus', 'Signing in...', 'info');
-
             try {
-                await signInWithEmailAndPassword(auth, email, password);
-                showStatus('loginStatus', 'Login successful!', 'success');
+                const result = await signInWithPopup(auth, googleProvider);
+                const user = result.user;
+                
+                // Check if user exists in Firestore
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                
+                if (!userDoc.exists()) {
+                    // Create new profile for first-time Google user
+                    await setDoc(doc(db, "users", user.uid), {
+                        uid: user.uid,
+                        name: user.displayName,
+                        email: user.email,
+                        username: user.email.split('@')[0], // Default username
+                        photoURL: user.photoURL,
+                        createdAt: new Date().toISOString()
+                    });
+                }
+                
+                showStatus(statusId, 'Google Login successful!', 'success');
                 setTimeout(() => toggleModal(), 1000);
             } catch (error) {
-                console.error("Login error:", error);
-                showStatus('loginStatus', error.message, 'error');
-            }
-        };
-
-        window.handleRegister = async () => {
-            const name = document.getElementById('regName').value;
-            const age = document.getElementById('regAge').value;
-            const phone = document.getElementById('regPhone').value;
-            const email = document.getElementById('regEmail').value;
-            const username = document.getElementById('regUsername').value;
-            const password = document.getElementById('regPassword').value;
-            const confirm = document.getElementById('regConfirm').value;
-
-            if (!name || !email || !username || !password || !confirm) {
-                showStatus('registerStatus', 'Please fill all required fields', 'error');
-                return;
-            }
-
-            if (password !== confirm) {
-                showStatus('registerStatus', 'Passwords do not match', 'error');
-                return;
-            }
-
-            showStatus('registerStatus', 'Creating account...', 'info');
-
-            try {
-                // 1. Create Auth User
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-
-                // 2. Save Profile to Firestore
-                await setDoc(doc(db, "users", user.uid), {
-                    uid: user.uid,
-                    name: name,
-                    age: age,
-                    phone: phone,
-                    email: email,
-                    username: username,
-                    createdAt: new Date().toISOString()
-                });
-
-                showStatus('registerStatus', 'Account created successfully!', 'success');
-                setTimeout(() => toggleModal(), 1500);
-            } catch (error) {
-                console.error("Registration error:", error);
-                showStatus('registerStatus', error.message, 'error');
+                console.error("Google Login error:", error);
+                showStatus(statusId, error.message, 'error');
             }
         };
 
@@ -2657,7 +1136,6 @@
         window.filterByCategory = (category) => {
             currentCategory = category;
             document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-            // Note: In modular JS, event is not global, but we can find the target or just re-render
             renderMarketplace();
         };
 
@@ -2669,621 +1147,7 @@
         };
     </script>
     
-    <!-- Chatbase Script (Keep as is) -->
-    <script>
-    (function(){
-        if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-            window.chatbase = (...arguments) => {
-                if(!window.chatbase.q){ window.chatbase.q = []; }
-                window.chatbase.q.push(arguments);
-            };
-            window.chatbase = new Proxy(window.chatbase,{
-                get(target, prop){
-                    if(prop === "q"){ return target.q; }
-                    return (...args) => target(prop, ...args);
-                }
-            });
-        }
-        const onLoad = function(){
-            const script = document.createElement("script");
-            script.src = "https://www.chatbase.co/embed.min.js";
-            script.id = "A0IVg-dTMMASuqCxupRtI";
-            script.domain = "www.chatbase.co";
-            document.body.appendChild(script);
-        };
-        if(document.readyState === "complete"){ onLoad(); } else { window.addEventListener("load", onLoad); }
-    })();
-    </script>
-</body>
-</html>
-
-            display: none;
-        }
-
-        .form-section.active {
-            display: block;
-        }
-
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        @media (max-width: 480px) {
-            .input-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(8, 17, 32, 0.6);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            border-radius: 10px;
-            color: white;
-            font-size: 15px;
-            transition: all 0.3s;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .status-message {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 14px;
-            text-align: center;
-            display: none;
-        }
-
-        .status-message.success {
-            background: rgba(16, 185, 129, 0.2);
-            color: #10b981;
-            display: block;
-        }
-
-        .status-message.error {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-            display: block;
-        }
-
-        .status-message.info {
-            background: rgba(59, 130, 246, 0.2);
-            color: #3b82f6;
-            display: block;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 8%;
-            background: var(--bg-dark);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 40px;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 24px;
-            border: 1px solid rgba(14, 165, 233, 0.1);
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 8% 40px;
-            background: #050a14;
-            text-align: center;
-            border-top: 1px solid rgba(14, 165, 233, 0.1);
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .footer-logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-links a {
-            color: var(--text-gray);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .copyright {
-            color: #4b5563;
-            font-size: 14px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-            }
-            .hero h1 {
-                font-size: 48px;
-            }
-            .marketplace-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <a href="#" class="logo">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global">
-            <h2>NaVi Global</h2>
-        </a>
-        <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li id="navAuthBtn"><a href="javascript:void(0)" class="nav-btn" onclick="toggleModal('login')">Sign In</a></li>
-            <li id="navUserInfo" class="user-info" style="display: none;">
-                <span class="user-greeting" id="userGreeting"></span>
-                <button class="logout-btn" onclick="handleLogout()">Logout</button>
-            </li>
-        </ul>
-    </nav>
-
-    <section class="hero" id="heroSection">
-        <div class="video-background">
-            <iframe src="https://www.youtube.com/embed/lfzcPdj9ynE?autoplay=1&mute=1&controls=0&loop=1&playlist=lfzcPdj9ynE&showinfo=0&rel=0&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <div class="video-fallback"></div>
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global Logo" class="hero-logo-large">
-            <h1>Scale Your Vision Globally</h1>
-            <p>Empowering modern enterprises with AI-driven connectivity, growth strategies, and seamless success pathways.</p>
-            <div class="cta-group">
-                <button class="main-btn" onclick="toggleModal('register')">Get Started Free</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Marketplace Section -->
-    <section class="marketplace" id="marketplaceSection">
-        <div class="marketplace-header">
-            <h1>Welcome to NaVi Global Marketplace</h1>
-            <p>Explore our premium AI-powered services and solutions</p>
-        </div>
-
-        <div class="search-bar">
-            <input type="text" class="search-input" id="searchInput" placeholder="Search services...">
-            <div class="category-filters">
-                <button class="category-btn active" onclick="filterByCategory('all')">All</button>
-                <button class="category-btn" onclick="filterByCategory('AI')">AI Solutions</button>
-                <button class="category-btn" onclick="filterByCategory('Analytics')">Analytics</button>
-                <button class="category-btn" onclick="filterByCategory('Security')">Security</button>
-                <button class="category-btn" onclick="filterByCategory('Integration')">Integration</button>
-            </div>
-        </div>
-
-        <div class="marketplace-grid" id="marketplaceGrid"></div>
-    </section>
-
-    <section id="features" class="features">
-        <div class="section-header">
-            <h2>Our Core Capabilities</h2>
-            <p>Everything you need to grow your business in the digital age.</p>
-        </div>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>AI Intelligence</h3>
-                <p>Leverage machine learning to predict market trends and automate customer interactions with precision.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Global Network</h3>
-                <p>Connect with partners and clients across 150+ countries through our high-speed, secure infrastructure.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Smart Analytics</h3>
-                <p>Real-time data visualization that turns complex business metrics into actionable growth strategies.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Auth Modal -->
-    <div class="modal" id="authModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="toggleModal()">&times;</span>
-            <div class="tab-group">
-                <div class="tab" id="loginTab" onclick="switchTab('login')">Login</div>
-                <div class="tab" id="registerTab" onclick="switchTab('register')">Register</div>
-            </div>
-
-            <!-- Login Form -->
-            <div id="loginSection" class="form-section">
-                <div id="loginStatus" class="status-message"></div>
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input type="email" id="loginEmail" placeholder="your@email.com">
-                </div>
-                <div class="input-group">
-                    <label>Password</label>
-                    <input type="password" id="loginPassword" placeholder="••••••••">
-                </div>
-                <button class="submit-btn" onclick="handleLogin()">Sign In</button>
-            </div>
-
-            <!-- Register Form -->
-            <div id="registerSection" class="form-section">
-                <div id="registerStatus" class="status-message"></div>
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Name</label>
-                        <input type="text" id="regName" placeholder="Full name">
-                    </div>
-                    <div class="input-group">
-                        <label>Age</label>
-                        <input type="number" id="regAge" placeholder="Age">
-                    </div>
-                </div>
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Phone</label>
-                        <input type="tel" id="regPhone" placeholder="+1...">
-                    </div>
-                    <div class="input-group">
-                        <label>Email</label>
-                        <input type="email" id="regEmail" placeholder="email@example.com">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label>Create Username</label>
-                    <input type="text" id="regUsername" placeholder="Unique username">
-                </div>
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Password</label>
-                        <input type="password" id="regPassword" placeholder="••••••••">
-                    </div>
-                    <div class="input-group">
-                        <label>Confirm</label>
-                        <input type="password" id="regConfirm" placeholder="••••••••">
-                    </div>
-                </div>
-                <button class="submit-btn" onclick="handleRegister()">Create Account</button>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-logo">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663752082886/teHajUhjUBpEklIg.png" alt="NaVi Global">
-            <h2>NaVi Global</h2>
-        </div>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Support</a>
-        </div>
-        <p class="copyright">© 2026 NaVi Global. All rights reserved.</p>
-    </footer>
-
-    <!-- Firebase SDKs (Modular v10) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { 
-            getAuth, 
-            createUserWithEmailAndPassword, 
-            signInWithEmailAndPassword, 
-            signOut, 
-            onAuthStateChanged 
-        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { 
-            getFirestore, 
-            doc, 
-            setDoc, 
-            getDoc 
-        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        // TODO: REPLACE THIS WITH YOUR FIREBASE CONFIG
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // Marketplace Items Database (Keep static or move to Firestore)
-        const marketplaceItems = [
-            { id: 1, title: "AI Content Generator", description: "Generate high-quality content in seconds using advanced AI models.", category: "AI", price: "$99/mo", emoji: "✨" },
-            { id: 2, title: "Advanced Analytics Dashboard", description: "Real-time insights with predictive analytics for your business.", category: "Analytics", price: "$149/mo", emoji: "📊" },
-            { id: 3, title: "Enterprise Security Suite", description: "Comprehensive security solutions with 24/7 monitoring.", category: "Security", price: "$299/mo", emoji: "🔐" },
-            { id: 4, title: "API Integration Hub", description: "Connect your tools seamlessly with 500+ integrations.", category: "Integration", price: "$199/mo", emoji: "🔗" },
-            { id: 5, title: "Machine Learning Toolkit", description: "Build and deploy ML models without coding expertise.", category: "AI", price: "$249/mo", emoji: "🤖" },
-            { id: 6, title: "Data Visualization Pro", description: "Transform raw data into stunning interactive visualizations.", category: "Analytics", price: "$129/mo", emoji: "📈" },
-            { id: 7, title: "Compliance Manager", description: "Ensure regulatory compliance with automated monitoring.", category: "Security", price: "$179/mo", emoji: "✅" },
-            { id: 8, title: "Webhook Manager", description: "Manage and monitor webhooks across all your applications.", category: "Integration", price: "$89/mo", emoji: "⚡" }
-        ];
-
-        let currentUserData = null;
-        let currentCategory = 'all';
-
-        // Listen for Auth State Changes
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                // User is signed in, fetch profile from Firestore
-                const userDoc = await getDoc(doc(db, "users", user.uid));
-                if (userDoc.exists()) {
-                    currentUserData = userDoc.data();
-                    showMarketplace();
-                } else {
-                    // Handle case where auth exists but doc doesn't
-                    console.error("User profile not found in Firestore");
-                    handleLogout();
-                }
-            } else {
-                // User is signed out
-                currentUserData = null;
-                showHero();
-            }
-        });
-
-        // UI Functions
-        window.toggleModal = (type) => {
-            const modal = document.getElementById('authModal');
-            modal.classList.toggle('active');
-            if (type) switchTab(type);
-        };
-
-        window.switchTab = (type) => {
-            const loginTab = document.getElementById('loginTab');
-            const registerTab = document.getElementById('registerTab');
-            const loginSection = document.getElementById('loginSection');
-            const registerSection = document.getElementById('registerSection');
-
-            if (type === 'login') {
-                loginTab.classList.add('active');
-                registerTab.classList.remove('active');
-                loginSection.classList.add('active');
-                registerSection.classList.remove('active');
-            } else {
-                registerTab.classList.add('active');
-                loginTab.classList.remove('active');
-                registerSection.classList.add('active');
-                loginSection.classList.remove('active');
-            }
-        };
-
-        function showStatus(elementId, message, type) {
-            const el = document.getElementById(elementId);
-            el.textContent = message;
-            el.className = 'status-message ' + type;
-            el.style.display = 'block';
-            setTimeout(() => { el.style.display = 'none'; }, 5000);
-        }
-
-        // Firebase Auth Logic
-        window.handleLogin = async () => {
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-
-            if (!email || !password) {
-                showStatus('loginStatus', 'Please fill all fields', 'error');
-                return;
-            }
-
-            showStatus('loginStatus', 'Signing in...', 'info');
-
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-                showStatus('loginStatus', 'Login successful!', 'success');
-                setTimeout(() => toggleModal(), 1000);
-            } catch (error) {
-                console.error("Login error:", error);
-                showStatus('loginStatus', error.message, 'error');
-            }
-        };
-
-        window.handleRegister = async () => {
-            const name = document.getElementById('regName').value;
-            const age = document.getElementById('regAge').value;
-            const phone = document.getElementById('regPhone').value;
-            const email = document.getElementById('regEmail').value;
-            const username = document.getElementById('regUsername').value;
-            const password = document.getElementById('regPassword').value;
-            const confirm = document.getElementById('regConfirm').value;
-
-            if (!name || !email || !username || !password || !confirm) {
-                showStatus('registerStatus', 'Please fill all required fields', 'error');
-                return;
-            }
-
-            if (password !== confirm) {
-                showStatus('registerStatus', 'Passwords do not match', 'error');
-                return;
-            }
-
-            showStatus('registerStatus', 'Creating account...', 'info');
-
-            try {
-                // 1. Create Auth User
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-
-                // 2. Save Profile to Firestore
-                await setDoc(doc(db, "users", user.uid), {
-                    uid: user.uid,
-                    name: name,
-                    age: age,
-                    phone: phone,
-                    email: email,
-                    username: username,
-                    createdAt: new Date().toISOString()
-                });
-
-                showStatus('registerStatus', 'Account created successfully!', 'success');
-                setTimeout(() => toggleModal(), 1500);
-            } catch (error) {
-                console.error("Registration error:", error);
-                showStatus('registerStatus', error.message, 'error');
-            }
-        };
-
-        window.handleLogout = async () => {
-            try {
-                await signOut(auth);
-            } catch (error) {
-                console.error("Logout error:", error);
-            }
-        };
-
-        function showHero() {
-            document.getElementById('heroSection').style.display = 'flex';
-            document.getElementById('marketplaceSection').classList.remove('active');
-            document.getElementById('navAuthBtn').style.display = 'block';
-            document.getElementById('navUserInfo').style.display = 'none';
-        }
-
-        function showMarketplace() {
-            document.getElementById('heroSection').style.display = 'none';
-            document.getElementById('marketplaceSection').classList.add('active');
-            document.getElementById('navAuthBtn').style.display = 'none';
-            document.getElementById('navUserInfo').style.display = 'flex';
-            document.getElementById('userGreeting').textContent = `Welcome, ${currentUserData.name || currentUserData.username}!`;
-            renderMarketplace();
-        }
-
-        function renderMarketplace() {
-            const grid = document.getElementById('marketplaceGrid');
-            const searchTerm = (document.getElementById('searchInput').value || "").toLowerCase();
-            
-            let filtered = marketplaceItems.filter(item => {
-                const matchesCategory = currentCategory === 'all' || item.category === currentCategory;
-                const matchesSearch = item.title.toLowerCase().includes(searchTerm) || 
-                                     item.description.toLowerCase().includes(searchTerm);
-                return matchesCategory && matchesSearch;
-            });
-
-            grid.innerHTML = filtered.map(item => `
-                <div class="item-card">
-                    <div class="item-image">${item.emoji}</div>
-                    <div class="item-content">
-                        <span class="item-category">${item.category}</span>
-                        <h3 class="item-title">${item.title}</h3>
-                        <p class="item-description">${item.description}</p>
-                        <div class="item-footer">
-                            <span class="item-price">${item.price}</span>
-                            <button class="item-btn" onclick="alert('Added to cart: ${item.title}')">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        window.filterByCategory = (category) => {
-            currentCategory = category;
-            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-            // Note: In modular JS, event is not global, but we can find the target or just re-render
-            renderMarketplace();
-        };
-
-        document.getElementById('searchInput')?.addEventListener('input', renderMarketplace);
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('authModal');
-            if (event.target == modal) toggleModal();
-        };
-    </script>
-    
-    <!-- Chatbase Script (Keep as is) -->
+    <!-- Chatbase Script -->
     <script>
     (function(){
         if(!window.chatbase || window.chatbase("getState") !== "initialized"){
